@@ -1,5 +1,25 @@
+const mongoose = require('mongoose');
+
+const Poll = mongoose.model('polls');
+
 module.exports = (app) => {
   app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
-}
+    res.send('Hello World!');
+  });
+
+  app.post('/create_poll', async (req, res) => {
+    try {
+      const { title } = await req.body;
+
+      const newPoll = new Poll({
+        title,
+      });
+
+      await newPoll.save();
+      await res.status(200).send(newPoll);
+      console.log('Poll saved', newPoll);
+    } catch (error) {
+      console.log('Error saving poll.', error);
+    }
+  });
+};
