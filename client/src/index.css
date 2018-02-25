@@ -10,4 +10,19 @@ html {
 
 body {
   box-sizing: border-box;
+  line-height: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Rubik', sans-serif;
+}
+
+h1 {
+  font-size: 4rem;
+  letter-spacing: 0.3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
 }
