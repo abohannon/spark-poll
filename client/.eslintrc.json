@@ -1,0 +1,29 @@
+{
+    "extends": "airbnb",
+    "root": true,
+    "globals": {
+      "document": false
+    },
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "rules": {
+      "strict": 0,
+      "react/jsx-filename-extension": [
+        "error",
+        {
+          "extensions": [".js", ".jsx"]
+        }
+      ],
+      "react/forbid-prop-types": [
+        0,
+        {
+          "ignore": ["object", "array"]
+        }
+      ],
+      "react/no-array-index-key": 0,
+      "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
+      "camelcase": 0
+    }
+}

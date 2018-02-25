@@ -22,4 +22,15 @@ module.exports = (app) => {
       console.log('Error saving poll.', error);
     }
   });
+
+  app.get('/fetch_polls', async (req, res) => {
+    Poll.find({}, (err, polls) => {
+      if (!err) {
+        console.log(polls);
+        res.send(polls);
+      } else {
+        console.log('Error fethcing polls', err);
+      }
+    });
+  });
 };
