@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Spark from '../images/icons/Spark';
-import { COLOR_WHITE_50, COLOR_WHITE, COLOR_PINK } from '../constants/style';
+import { COLOR_WHITE, COLOR_PINK } from '../constants/style';
 
 const styles = {
   navContainerStyle: {

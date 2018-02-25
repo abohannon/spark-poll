@@ -3,7 +3,6 @@ import {
   COLOR_PINK,
   COLOR_WHITE,
   COLOR_PURPLE,
-  COLOR_PURPLE_LIGHT,
   COLOR_BLUE,
   TEXT_PRIMARY,
 } from '../constants/style';
