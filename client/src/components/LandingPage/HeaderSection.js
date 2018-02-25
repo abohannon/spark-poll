@@ -5,9 +5,9 @@ import {
   COLOR_PURPLE_80,
   COLOR_BLUE_80,
   TEXT_PRIMARY,
-} from '../constants/style';
-import { Button } from './common';
-import Crowd from '../images/crowd.jpg';
+} from '../../constants/style';
+import { Button } from '../common';
+import Crowd from '../../images/crowd-low.jpg';
 
 const styles = {
   headerStyle: {
@@ -20,7 +20,7 @@ const styles = {
     background: `linear-gradient(to right top, ${COLOR_PURPLE_80}, ${COLOR_BLUE_80}), url(${Crowd})`,
     backgroundSize: 'cover',
     padding: '14rem 20rem',
-    '-webkit-clip-path': 'polygon(0 0, 100% 0, 100% 90vh, 0% 100%)',
+    WebkitClipPath: 'polygon(0 0, 100% 0, 100% 90vh, 0% 100%)',
     clipPath: 'polygon(0 0, 100% 0, 100% 80vh, 0% 100%)',
   },
   headerContentStyle: {

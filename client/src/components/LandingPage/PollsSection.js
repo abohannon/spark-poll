@@ -6,7 +6,7 @@ import {
   COLOR_BLUE,
   COLOR_GREY_DARK,
   TEXT_PRIMARY,
-} from '../constants/style';
+} from '../../constants/style';
 
 const styles = {
   pollsSectionContainerStyle: {

@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Nav from './Nav';
-import HeaderSection from './HeaderSection';
-import PollsSection from './PollsSection';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LandingPage from './LandingPage';
+import Dashboard from './UserDashboard/Dashboard';
 
 class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="App">
-          <Nav />
-          <HeaderSection />
-          <PollsSection />
-        </div>
+        <Router>
+          <Switch>
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/" component={LandingPage} />
+          </Switch>
+        </Router>
       </MuiThemeProvider>
     );
   }
