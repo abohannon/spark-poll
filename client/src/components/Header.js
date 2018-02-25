@@ -3,22 +3,24 @@ import {
   COLOR_PINK,
   COLOR_WHITE,
   COLOR_PURPLE,
+  COLOR_PURPLE_LIGHT,
   COLOR_BLUE,
   TEXT_PRIMARY,
 } from '../constants/style';
 import { Button } from './common';
-import Spark from '../images/icons/Spark';
 
 const styles = {
   headerStyle: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    height: '70vh',
+    height: '90vh',
     width: '100%',
     position: 'relative',
     background: `linear-gradient(to right top, ${COLOR_PURPLE}, ${COLOR_BLUE})`,
-    padding: '3rem',
+    padding: '14rem 20rem',
+    '-webkit-clip-path': 'polygon(0 0, 100% 0, 100% 90vh, 0% 100%)',
+    clipPath: 'polygon(0 0, 100% 0, 100% 80vh, 0% 100%)',
   },
   headerContentStyle: {
     display: 'flex',
@@ -53,7 +55,7 @@ const Header = () => {
           <span style={{ display: 'block' }}>share polls with</span>
           <span style={{ display: 'block' }}>friends</span>
         </h1>
-        <Button type="primary">Create a poll</Button>
+        <Button type="primary" margin>Create a poll</Button>
       </div>
     </div>
   );

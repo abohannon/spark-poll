@@ -38,6 +38,9 @@ const secondaryProps = {
     fontFamily: '\'Rubik\', sans-serif',
     fontWeight: 400,
   },
+  style: {
+    margin: '2rem 0 2rem 0',
+  },
 };
 
 const Button = ({ children, type }) => {
