@@ -19,11 +19,14 @@ const styles = {
   },
   navLogoStyle: {
     display: 'flex',
+    flex: 2,
     flexDirection: 'row',
     alignItems: 'center',
   },
   navLinkContainerStyle: {
     display: 'flex',
+    flex: 2,
+    justifyContent: 'flex-start',
     fontFamily: '\'Rubik\', sans-serif',
     fontWeight: 400,
     fontSize: '1.2rem',
@@ -37,7 +40,8 @@ const styles = {
   },
   navLinkStyle: {
     listStyleType: 'none',
-    marginLeft: '3rem',
+    marginRight: '6rem',
+    textTransform: 'uppercase',
   },
 };
 

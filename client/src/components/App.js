@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Nav from './Nav';
-import Header from './Header';
+import HeaderSection from './HeaderSection';
+import PollsSection from './PollsSection';
 
 class App extends Component {
   render() {
@@ -9,7 +10,8 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <Nav />
-          <Header />
+          <HeaderSection />
+          <PollsSection />
         </div>
       </MuiThemeProvider>
     );

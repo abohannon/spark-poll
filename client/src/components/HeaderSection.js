@@ -2,11 +2,12 @@ import React from 'react';
 import {
   COLOR_PINK,
   COLOR_WHITE,
-  COLOR_PURPLE,
-  COLOR_BLUE,
+  COLOR_PURPLE_80,
+  COLOR_BLUE_80,
   TEXT_PRIMARY,
 } from '../constants/style';
 import { Button } from './common';
+import Crowd from '../images/crowd.jpg';
 
 const styles = {
   headerStyle: {
@@ -16,7 +17,8 @@ const styles = {
     height: '90vh',
     width: '100%',
     position: 'relative',
-    background: `linear-gradient(to right top, ${COLOR_PURPLE}, ${COLOR_BLUE})`,
+    background: `linear-gradient(to right top, ${COLOR_PURPLE_80}, ${COLOR_BLUE_80}), url(${Crowd})`,
+    backgroundSize: 'cover',
     padding: '14rem 20rem',
     '-webkit-clip-path': 'polygon(0 0, 100% 0, 100% 90vh, 0% 100%)',
     clipPath: 'polygon(0 0, 100% 0, 100% 80vh, 0% 100%)',
@@ -30,7 +32,6 @@ const styles = {
   },
   headingStyle: {
     color: COLOR_WHITE,
-    textTransform: 'uppercase',
     fontWeight: 600,
     lineHeight: '1.5',
   },
