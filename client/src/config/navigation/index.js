@@ -1,7 +1,7 @@
 export const mainNav = [
   {
     label: 'View Polls',
-    path: '#',
+    path: '/',
     display: 'true',
     focus: false,
   },
@@ -12,7 +12,7 @@ export const mainNav = [
     focus: false,
   },
   {
-    label: 'Signup',
+    label: 'Sign up',
     path: 'signup',
     display: 'true',
     focus: true,

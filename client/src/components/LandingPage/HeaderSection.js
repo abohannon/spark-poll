@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import {
   COLOR_PINK,
@@ -17,7 +16,6 @@ const styles = {
   headerStyle: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
     height: '90vh',
     width: '100%',
     position: 'relative',
@@ -30,7 +28,7 @@ const styles = {
   headerContentStyle: {
     display: 'flex',
     flexDirection: 'column',
-    width: '50%',
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
@@ -44,17 +42,25 @@ const styles = {
     color: COLOR_WHITE,
     background: COLOR_PINK,
   },
+  authContainerStyle: {
+    display: 'flex',
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 };
 
 const Header = (props) => {
   const {
-    headerStyle, headerContentStyle, headingStyle,
+    headerStyle, headerContentStyle, headingStyle, authContainerStyle,
   } = styles;
 
   return (
     <div className="header" style={headerStyle}>
-      <Route path="/login" render={() => <LoginForm />} />
-      <Route path="/signup" render={() => <SignupForm />} />
+      <div className="header__auth" style={authContainerStyle}>
+        <Route path="/login" render={() => <LoginForm />} />
+        <Route path="/signup" render={() => <SignupForm />} />
+      </div>
       <div className="header__content" style={headerContentStyle}>
         <h1 style={headingStyle}>
           <span style={{ display: 'block' }}>Create and</span>

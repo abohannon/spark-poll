@@ -28,6 +28,27 @@ const primaryProps = {
   },
 };
 
+const invertedProps = {
+  buttonStyle: {
+    background: COLOR_WHITE,
+  },
+  labelStyle: {
+    color: COLOR_PINK,
+    fontSize: '1.2rem',
+    letterSpacing: '.2rem',
+    marginLeft: 10,
+    marginRight: 10,
+    fontFamily: '\'Rubik\', sans-serif',
+    fontWeight: 400,
+  },
+  overlayStyle: {
+    width: '100%',
+  },
+  style: {
+    margin: '2rem 0 2rem 0',
+  },
+};
+
 const secondaryProps = {
   labelStyle: {
     color: COLOR_PINK,
@@ -44,20 +65,18 @@ const secondaryProps = {
 };
 
 const Button = ({
-  children, type, primary, secondary,
+  children, type, primary, secondary, inverted,
 }) => {
   let button = null;
   if (primary) {
     button = <RaisedButton type={type} label={children} {...primaryProps} />;
+  } else if (inverted) {
+    button = <RaisedButton type={type} label={children} {...invertedProps} />;
   } else if (secondary) {
     button = <FlatButton type={type} label={children} {...secondaryProps} />;
   }
 
-  return (
-    <div>
-      {button}
-    </div>
-  );
+  return button;
 };
 
 Button.propTypes = {
