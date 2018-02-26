@@ -7,13 +7,13 @@ export const mainNav = [
   },
   {
     label: 'Login',
-    path: '#',
+    path: 'login',
     display: 'true',
     focus: false,
   },
   {
     label: 'Signup',
-    path: 'www.google.com',
+    path: 'signup',
     display: 'true',
     focus: true,
   },

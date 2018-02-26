@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import {
   COLOR_PINK,
   COLOR_WHITE,
@@ -8,6 +10,8 @@ import {
 } from '../../constants/style';
 import { Button } from '../common';
 import Crowd from '../../images/crowd-low.jpg';
+import LoginForm from '../UserAuth/LoginForm';
+import SignupForm from '../UserAuth/SignupForm';
 
 const styles = {
   headerStyle: {
@@ -42,20 +46,22 @@ const styles = {
   },
 };
 
-const Header = () => {
+const Header = (props) => {
   const {
     headerStyle, headerContentStyle, headingStyle,
   } = styles;
 
   return (
     <div className="header" style={headerStyle}>
+      <Route path="/login" render={() => <LoginForm />} />
+      <Route path="/signup" render={() => <SignupForm />} />
       <div className="header__content" style={headerContentStyle}>
         <h1 style={headingStyle}>
           <span style={{ display: 'block' }}>Create and</span>
           <span style={{ display: 'block' }}>share polls with</span>
           <span style={{ display: 'block' }}>friends</span>
         </h1>
-        <Button type="primary" margin>Create a poll</Button>
+        <Button primary margin>Create a poll</Button>
       </div>
     </div>
   );

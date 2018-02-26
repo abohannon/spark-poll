@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import { pollsFetch } from '../actions';
 import LandingPage from './LandingPage';
 import Dashboard from './UserDashboard/Dashboard';
+import LoginForm from './UserAuth/LoginForm';
+import SignupForm from './UserAuth/SignupForm';
+
+const history = createHistory();
 
 class App extends Component {
   componentWillMount() {
     this.props.pollsFetch();
   }
   render() {
-    console.log('app props', this.props);
     return (
       <MuiThemeProvider>
-        <Router>
+        <Router history={history}>
           <Switch>
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/" component={LandingPage} />

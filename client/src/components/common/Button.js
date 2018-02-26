@@ -43,13 +43,14 @@ const secondaryProps = {
   },
 };
 
-const Button = ({ children, type }) => {
+const Button = ({
+  children, type, primary, secondary,
+}) => {
   let button = null;
-
-  if (type === 'primary') {
-    button = <RaisedButton label={children} {...primaryProps} />;
-  } else if (type === 'secondary') {
-    button = <FlatButton label={children} {...secondaryProps} />;
+  if (primary) {
+    button = <RaisedButton type={type} label={children} {...primaryProps} />;
+  } else if (secondary) {
+    button = <FlatButton type={type} label={children} {...secondaryProps} />;
   }
 
   return (
@@ -61,7 +62,6 @@ const Button = ({ children, type }) => {
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
 };
 
 

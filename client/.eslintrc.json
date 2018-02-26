@@ -10,6 +10,7 @@
       "node": true
     },
     "rules": {
+      "no-mutable-exports": 0,
       "strict": 0,
       "react/jsx-filename-extension": [
         "error",

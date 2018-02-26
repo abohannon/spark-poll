@@ -10,6 +10,8 @@ import reducers from './reducers';
 
 const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
+console.log('CURRENT STATE:', store.getState());
+
 ReactDOM.render(
   (
     <Provider store={store}>
