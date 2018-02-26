@@ -5,7 +5,6 @@ import { COLOR_WHITE } from '../../constants/style';
 const styles = {
   navLogoStyle: {
     display: 'flex',
-    flex: 2,
     flexDirection: 'row',
     alignItems: 'center',
   },

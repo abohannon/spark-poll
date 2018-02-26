@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 require('./models/Poll');
 const routes = require('./routes');
 
@@ -16,6 +17,7 @@ mongoose.connect(keys.MONGODB_URI, (error) => {
   }
 });
 
+app.use(cors());
 app.use(bodyParser.json());
 
 routes(app);

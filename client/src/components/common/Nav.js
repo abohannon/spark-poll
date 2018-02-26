@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { COLOR_WHITE, COLOR_PINK, COLOR_GREY_DARK } from '../../constants/style';
 
-const styles = ({ invert }) => ({
+const styles = props => ({
   navLinkContainerStyle: {
     display: 'flex',
-    flex: 2,
     justifyContent: 'flex-start',
     fontFamily: '\'Rubik\', sans-serif',
     fontWeight: 400,
     fontSize: '1.2rem',
     letterSpacing: '.2rem',
-    color: invert ? COLOR_GREY_DARK : COLOR_WHITE,
+    color: !props.inverted ? COLOR_WHITE : COLOR_GREY_DARK,
   },
   navListStyle: {
     display: 'flex',
@@ -29,55 +29,69 @@ const styles = ({ invert }) => ({
     textDecoration: 'none',
     color: 'inherit',
   },
+  hoverStyle: {
+    opacity: 1,
+    transform: 'translateY(-2px)',
+  },
 });
 
 class Nav extends Component {
+  static propTypes = {
+    type: PropTypes.array.isRequired,
+  }
+
   state = {
     hover: false,
     index: '',
-   }
+  }
 
   onMouseOver = (index) => {
     this.setState({
       hover: true,
-      index
-    })
+      index,
+    });
   }
 
-  onMouseLeave = (index) => {
+  onMouseLeave = () => {
     this.setState({
       hover: false,
       index: '',
-    })
+    });
   }
 
-  renderNavLinks({ type, invert }, state) {
-    return type.map((item, index) => {
-      const { navListItemStyle, navLinkStyle } = styles({ invert }, state);
-      return (
-        <li
-          style={
-            this.state.hover && this.state.index === index
-              ? { ...navListItemStyle, opacity: 1, transform: 'translateY(-2px)' }
-              :  navListItemStyle
-          }
-          key={item.label}
-          onMouseEnter={() => this.onMouseOver(index)}
-          onMouseLeave={() => this.onMouseLeave(index)}
+  hoverState = (index) => {
+    const { navListItemStyle, hoverStyle } = styles(this.props);
+    return (
+      this.state.hover && this.state.index === index
+        ? { ...navListItemStyle, ...hoverStyle }
+        : navListItemStyle
+    );
+  }
+  focusState = (item) => {
+    const { navLinkStyle } = styles(this.props);
+    return (
+      item.focus
+        ? { ...navLinkStyle, color: COLOR_PINK }
+        : navLinkStyle
+    );
+  }
+
+  renderNavLinks() {
+    return this.props.type.map((item, index) => (
+      <li
+        style={this.hoverState(index)}
+        key={item.label}
+        onMouseEnter={() => this.onMouseOver(index)}
+        onMouseLeave={() => this.onMouseLeave(index)}
+      >
+        <Link
+          to={item.path}
+          style={this.focusState(item)}
         >
-          <Link
-            to={item.path}
-            style={
-              item.focus
-                ? { ...navLinkStyle, color: COLOR_PINK }
-                : navLinkStyle
-            }
-          >
-            {item.label}
-          </Link>
-        </li>
-      );
-    });
+          {item.label}
+        </Link>
+      </li>
+    ));
   }
 
   render() {
@@ -85,7 +99,7 @@ class Nav extends Component {
     return (
       <div className="nav__links" style={navLinkContainerStyle}>
         <ul style={navListStyle}>
-          {this.renderNavLinks(this.props, this.state)}
+          {this.renderNavLinks()}
         </ul>
       </div>
     );

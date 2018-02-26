@@ -7,7 +7,7 @@ module.exports = (app) => {
     res.send('Hello World!');
   });
 
-  app.post('/create_poll', async (req, res) => {
+  app.post('/api/create_poll', async (req, res) => {
     try {
       const { title } = await req.body;
 
@@ -23,13 +23,13 @@ module.exports = (app) => {
     }
   });
 
-  app.get('/fetch_polls', async (req, res) => {
+  app.get('/api/fetch_polls', async (req, res) => {
     Poll.find({}, (err, polls) => {
       if (!err) {
         console.log(polls);
         res.send(polls);
       } else {
-        console.log('Error fethcing polls', err);
+        console.log('Error fetching polls', err);
       }
     });
   });

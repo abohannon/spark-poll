@@ -2,6 +2,12 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:5000",
+      "secure": false
+    }
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "material-ui": "^0.20.0",
