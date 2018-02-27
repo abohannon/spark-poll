@@ -4,6 +4,7 @@ const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('./models/Poll');
+require('./models/User');
 const routes = require('./routes');
 
 const app = express();

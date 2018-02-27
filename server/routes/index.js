@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const Poll = mongoose.model('polls');
+const User = mongoose.model('users');
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -32,5 +33,23 @@ module.exports = (app) => {
         console.log('Error fetching polls', err);
       }
     });
+  });
+
+  app.post('/api/create_user', async (req, res) => {
+    try {
+      const { firstName, email, password } = await req.body;
+
+      const newUser = new User({
+        firstName,
+        email,
+        password,
+      });
+
+      newUser.save();
+      res.status(201).send('User successfully created.');
+    } catch (error) {
+      console.log('ERROR CREATING USER:', error);
+      res.status(501).send('Failed to create user.');
+    }
   });
 };

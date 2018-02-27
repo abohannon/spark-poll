@@ -5,9 +5,9 @@ import { Button, Input } from '../common';
 import {
   COLOR_WHITE,
   COLOR_WHITE_15,
-  COLOR_BLUE_LIGHT,
   TEXT_PRIMARY,
 } from '../../constants/style';
+import { createUser } from '../../actions';
 
 const styles = {
   containerStyle: {
@@ -33,8 +33,9 @@ const styles = {
 
 class SignupForm extends Component {
   handleSubmit = (event) => {
+    const { createUser, signupForm } = this.props;
     event.preventDefault();
-    console.log('SUBMIT');
+    createUser(signupForm.values);
   };
 
   render() {
@@ -59,7 +60,8 @@ class SignupForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({ signupForm: state.form.signup });
 
 export default reduxForm({
   form: 'signup',
-})(connect()(SignupForm));
+})(connect(mapStateToProps, { createUser })(SignupForm));
