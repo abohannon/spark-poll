@@ -36,20 +36,24 @@ module.exports = (app) => {
   });
 
   app.post('/api/create_user', async (req, res) => {
-    try {
-      const { firstName, email, password } = await req.body;
-
+    const { firstName, email, password } = await req.body;
+    if (firstName && email && password) {
       const newUser = new User({
         firstName,
         email,
         password,
       });
 
-      newUser.save();
-      res.status(201).send('User successfully created.');
-    } catch (error) {
-      console.log('ERROR CREATING USER:', error);
-      res.status(501).send('Failed to create user.');
+      User.findOne({ email }, (err, user) => {
+        if (user) {
+          res.status(403).send('An account with that email already exists.');
+        } else {
+          newUser.save();
+          res.status(201).send('User successfully created.');
+        }
+      });
+    } else {
+      res.status(400).send('All fields are required.');
     }
   });
 };
