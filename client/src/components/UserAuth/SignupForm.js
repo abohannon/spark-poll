@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import PropTypes from 'prop-types';
 import { Button, Input } from '../common';
 import {
   COLOR_WHITE,
   COLOR_WHITE_15,
   TEXT_PRIMARY,
+  COLOR_PINK,
 } from '../../constants/style';
 import { createUser } from '../../actions';
 
@@ -15,7 +17,8 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     background: COLOR_WHITE_15,
-    padding: '6rem',
+    padding: '6rem 6rem 3rem 6rem',
+    marginRight: '2rem',
     borderRadius: 2,
   },
   headerStyle: {
@@ -32,11 +35,33 @@ const styles = {
 };
 
 class SignupForm extends Component {
+  static defaultProps = {
+    signupForm: undefined,
+  }
+
+  static propTypes = {
+    createUser: PropTypes.func.isRequired,
+    signupForm: PropTypes.object,
+    auth: PropTypes.object.isRequired,
+  }
+
   handleSubmit = (event) => {
     const { createUser, signupForm } = this.props;
     event.preventDefault();
     createUser(signupForm.values);
   };
+
+  confirmation = () => {
+    const { auth } = this.props;
+    if (auth.create_user_fail) {
+      return (
+        <div style={{ color: COLOR_PINK, textAlign: 'center' }}>
+          * {this.props.auth.create_user_fail}
+        </div>
+      );
+    }
+    return null;
+  }
 
   render() {
     const { containerStyle, headerStyle, buttonContainerStyle } = styles;
@@ -55,12 +80,16 @@ class SignupForm extends Component {
         <div style={buttonContainerStyle}>
           <Button type="submit" inverted>Sign Up</Button>
         </div>
+        {this.confirmation()}
       </form>
     );
   }
 }
 
-const mapStateToProps = state => ({ signupForm: state.form.signup });
+const mapStateToProps = state => ({
+  signupForm: state.form.signup,
+  auth: state.auth,
+});
 
 export default reduxForm({
   form: 'signup',

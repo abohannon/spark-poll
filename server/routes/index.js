@@ -46,14 +46,14 @@ module.exports = (app) => {
 
       User.findOne({ email }, (err, user) => {
         if (user) {
-          res.status(403).send('An account with that email already exists.');
+          res.send('An account with that email already exists.');
         } else {
           newUser.save();
           res.status(201).send('User successfully created.');
         }
       });
     } else {
-      res.status(400).send('All fields are required.');
+      res.send('All fields are required.');
     }
   });
 };

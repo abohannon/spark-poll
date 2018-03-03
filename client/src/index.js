@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
+import logger from 'redux-logger';
 import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
 
-const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
-
-console.log('CURRENT STATE:', store.getState());
+const store = createStore(reducers, {}, applyMiddleware(ReduxThunk, logger));
 
 ReactDOM.render(
   (

@@ -14,7 +14,8 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     background: COLOR_WHITE_15,
-    padding: '6rem',
+    padding: '6rem 6rem 3rem 6rem',
+    marginRight: '2rem',
     borderRadius: 2,
   },
   headerStyle: {
