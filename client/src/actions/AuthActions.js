@@ -16,8 +16,8 @@ export const createUser = userData => async (dispatch) => {
 
 export const loginUser = userData => async (dispatch) => {
   const res = await axios.post('/api/login_user', userData);
-  console.log('login user:', userData);
   dispatch({ type: LOGIN_USER, payload: res.data });
+  // TODO: Finish action
 };
 
 export const fetchUser = () => {};
