@@ -5,6 +5,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   FETCH_USER,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAIL,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -56,10 +58,25 @@ export default (state = INITIAL_STATE, action) => {
     }
     case FETCH_USER: {
       const newState = {
-        // loading: true,
-        // error: '',
+        loading: true,
+        error: '',
+      };
+      return { ...state, ...newState };
+    }
+    case FETCH_USER_SUCCESS: {
+      const newState = {
+        loading: false,
+        error: '',
         user: action.payload,
         isAuthenticated: true,
+      };
+      return { ...state, ...newState };
+    }
+    case FETCH_USER_FAIL: {
+      const newState = {
+        loading: false,
+        error: action.payload,
+        isAuthenticated: false,
       };
       return { ...state, ...newState };
     }

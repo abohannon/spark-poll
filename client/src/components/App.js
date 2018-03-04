@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import { pollsFetch, fetchUser } from '../actions';
+import PrivateRoute from './UserAuth/PrivateRoute';
 import LandingPage from './LandingPage';
 import Dashboard from './UserDashboard/Dashboard';
 import LoginForm from './UserAuth/LoginForm';
@@ -17,13 +18,19 @@ class App extends Component {
     this.props.fetchUser();
   }
   render() {
+    console.log(this.props.auth);
+    const { isAuthenticated } = this.props.auth;
     return (
       <MuiThemeProvider>
         <Router history={history}>
-          <Switch>
-            <Route path="/dashboard" component={Dashboard} />
+          <div>
             <Route path="/" component={LandingPage} />
-          </Switch>
+            <PrivateRoute
+              path="/dashboard"
+              component={Dashboard}
+              authed={isAuthenticated}
+            />
+          </div>
         </Router>
       </MuiThemeProvider>
     );

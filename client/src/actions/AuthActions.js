@@ -6,6 +6,8 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER_SUCCESS,
   FETCH_USER,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAIL,
 } from './types';
 
 export const createUser = userData => async (dispatch) => {
@@ -36,6 +38,8 @@ export const loginUser = userData => async (dispatch) => {
 };
 
 export const fetchUser = () => async (dispatch) => {
+  dispatch({ type: FETCH_USER });
+
   const options = {
     method: 'GET',
     credentials: 'include',
@@ -44,8 +48,16 @@ export const fetchUser = () => async (dispatch) => {
     },
   };
 
-  const res = await axios.get('/api/get_user', options);
+  try {
+    const res = await axios.get('/api/get_user', options);
 
-  dispatch({ type: FETCH_USER, payload: res.data });
-  console.log('fetch user:', res.data);
+    if (res.status === 200) {
+      dispatch({ type: FETCH_USER_SUCCESS, payload: res.data });
+    } else {
+      dispatch({ type: FETCH_USER_FAIL, payload: res.data });
+    }
+  } catch (error) {
+    if (error) console.log('Error fetching user:', error);
+    dispatch({ type: FETCH_USER_FAIL, payload: 'Error fetching user' });
+  }
 };
