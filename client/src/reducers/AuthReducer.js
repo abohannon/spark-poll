@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   user: null,
   error: '',
   loading: false,
-  isAuthenticated: false,
+  isAuthenticated: !!localStorage.getItem('jwtToken'),
 };
 
 export default (state = INITIAL_STATE, action) => {
