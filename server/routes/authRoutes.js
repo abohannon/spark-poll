@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 const User = mongoose.model('users');
 const {
@@ -43,9 +44,27 @@ module.exports = (app) => {
 
     const userInfo = setJwtPayload(user);
     return res.status(200).json({
-      success: true,
       token: `JWT ${generateToken(userInfo)}`,
-      user: userInfo,
+      data: userInfo,
     });
   });
+
+  // TODO: Not finished
+  app.get(
+    '/api/get_user',
+    passport.authenticate('jwt', { session: false }),
+    async (req, res) => {
+      const { id } = req.user;
+
+      // check if user exists
+      const user = await User.findOne({ _id: id });
+
+      // pull of non-sensitive data to pass back to client
+      const { firstName, email } = user;
+
+      if (user) return res.status(200).send({ firstName, email });
+
+      return res.status(401).send('Unauthorized');
+    },
+  );
 };

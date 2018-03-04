@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import { pollsFetch } from '../actions';
+import { pollsFetch, fetchUser } from '../actions';
 import LandingPage from './LandingPage';
 import Dashboard from './UserDashboard/Dashboard';
 import LoginForm from './UserAuth/LoginForm';
@@ -14,6 +14,7 @@ const history = createHistory();
 class App extends Component {
   componentWillMount() {
     this.props.pollsFetch();
+    this.props.fetchUser();
   }
   render() {
     return (
@@ -30,4 +31,4 @@ class App extends Component {
 }
 const mapStateToProps = state => ({ auth: state.auth, polls: state.polls });
 
-export default connect(mapStateToProps, { pollsFetch })(App);
+export default connect(mapStateToProps, { pollsFetch, fetchUser })(App);

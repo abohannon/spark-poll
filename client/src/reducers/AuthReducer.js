@@ -4,14 +4,14 @@ import {
   LOGIN_USER,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
+  FETCH_USER,
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  create_user_success: null,
-  create_user_fail: null,
   user: null,
   error: '',
   loading: false,
+  isAuthenticated: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,13 +19,13 @@ export default (state = INITIAL_STATE, action) => {
     case CREATE_USER_SUCCESS: {
       const newState = {
         create_user_success: action.payload,
-        create_user_fail: null,
+        create_user_fail: '',
+        isAuthenticated: true,
       };
       return { ...state, ...newState };
     }
     case CREATE_USER_FAIL: {
       const newState = {
-        create_user_success: null,
         create_user_fail: action.payload,
       };
       return { ...state, ...newState };
@@ -40,6 +40,7 @@ export default (state = INITIAL_STATE, action) => {
     case LOGIN_USER_SUCCESS: {
       const newState = {
         user: action.payload,
+        isAuthenticated: true,
         loading: false,
         error: '',
       };
@@ -49,6 +50,16 @@ export default (state = INITIAL_STATE, action) => {
       const newState = {
         loading: false,
         error: 'Authentication Error',
+        isAuthenticated: false,
+      };
+      return { ...state, ...newState };
+    }
+    case FETCH_USER: {
+      const newState = {
+        // loading: true,
+        // error: '',
+        user: action.payload,
+        isAuthenticated: true,
       };
       return { ...state, ...newState };
     }
