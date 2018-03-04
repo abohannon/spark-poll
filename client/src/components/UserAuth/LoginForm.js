@@ -7,6 +7,7 @@ import {
   COLOR_WHITE_15,
   TEXT_PRIMARY,
 } from '../../constants/style';
+import { loginUser } from '../../actions';
 
 const styles = {
   containerStyle: {
@@ -33,7 +34,10 @@ const styles = {
 
 class LoginForm extends Component {
   handleSubmit = (event) => {
+    const { loginUser, loginForm } = this.props;
     event.preventDefault();
+    loginUser(loginForm.values);
+
     console.log('SUBMIT');
   };
 
@@ -56,7 +60,11 @@ class LoginForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  loginForm: state.form.login,
+  auth: state.auth,
+});
 
 export default reduxForm({
   form: 'login',
-})(connect()(LoginForm));
+})(connect(mapStateToProps, { loginUser })(LoginForm));

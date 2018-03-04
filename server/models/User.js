@@ -9,14 +9,12 @@ const userSchema = new Schema({
   password: { type: String, required: true },
 });
 
-userSchema.methods.isPasswordValid = function (rawPassword, callback) {
-  const user = this;
-  bcrypt.compare(rawPassword, user.password, (err, same) => {
-    if (err) {
-      callback(err);
-    }
-    callback(null, same);
-  });
+userSchema.methods.isPasswordValid = function (rawPassword) {
+  try {
+    return bcrypt.compare(rawPassword, this.password);
+  } catch (error) {
+    throw error;
+  }
 };
 
 const saltRounds = 10;

@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const passport = require('passport');
 require('./models/Poll');
 require('./models/User');
-const routes = require('./routes');
+const { authRoutes, pollRoutes } = require('./routes');
+const jwtStrategy = require('./services/jwt-strategy');
+
 
 const app = express();
 
@@ -18,11 +21,12 @@ mongoose.connect(keys.MONGODB_URI, (error) => {
   }
 });
 
+passport.use(jwtStrategy);
 app.use(cors());
 app.use(bodyParser.json());
 
-routes(app);
-
+pollRoutes(app);
+authRoutes(app);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`w00t! Server up on port ${PORT}!`);
