@@ -2,21 +2,34 @@ export const mainNav = [
   {
     label: 'View Polls',
     path: '/',
-    display: 'true',
+    display: true,
     focus: false,
   },
   {
     label: 'Login',
     path: 'login',
-    display: 'true',
+    display: true,
     focus: false,
   },
   {
     label: 'Sign up',
     path: 'signup',
-    display: 'true',
+    display: true,
     focus: true,
   },
 ];
 
-export const userNav = [];
+export const userNav = (userName = 'Friend') => (
+  [
+    {
+      label: `Hello, ${userName}!`,
+      path: '#',
+      display: true,
+    },
+    {
+      label: 'Log out',
+      path: '#',
+      display: true,
+    },
+  ]
+);

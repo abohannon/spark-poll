@@ -10,11 +10,26 @@ const styles = {
   },
 };
 
-const Logo = () => (
-  <div className="nav__logo" style={styles.navLogoStyle}>
-    <Spark fill={COLOR_WHITE} width="50px" height="50px" />
-    <div style={{ marginLeft: '2rem', fontSize: '2rem' }}>Spark Poll</div>
-  </div>
-);
+const Logo = (props) => {
+  const { style, med } = props;
+  return (
+    <div className="nav__logo" style={styles.navLogoStyle}>
+      <Spark
+        fill={style.color || COLOR_WHITE}
+        width={med ? '35px' : '50px'}
+        height={med ? '35px' : '50px'}
+      />
+      <div
+        style={{
+          marginLeft: med ? '1.2rem' : '2rem',
+          fontSize: med ? '1.7rem' : '2rem',
+        color: style.color || COLOR_WHITE,
+      }}
+      >
+      Spark Poll
+      </div>
+    </div>
+  );
+};
 
 export { Logo };

@@ -24,7 +24,7 @@ class MainNav extends Component {
   render() {
     return (
       <div className="nav" style={styles.navContainerStyle}>
-        <Logo style={{ marginRight: 'auto' }} />
+        <Logo style={{ marginRight: 'auto', color: COLOR_WHITE }} />
         <Nav type={mainNav} />
       </div>
     );
