@@ -13,20 +13,20 @@ const styles = {
 const Logo = (props) => {
   const { style, med } = props;
   return (
-    <div className="nav__logo" style={styles.navLogoStyle}>
+    <div className="nav__logo" style={{ ...styles.navLogoStyle }}>
       <Spark
-        fill={style.color || COLOR_WHITE}
-        width={med ? '35px' : '50px'}
+        fill={props.style.color || COLOR_WHITE}
+        width={props.med ? '35px' : '50px'}
         height={med ? '35px' : '50px'}
       />
       <div
         style={{
           marginLeft: med ? '1.2rem' : '2rem',
           fontSize: med ? '1.7rem' : '2rem',
-        color: style.color || COLOR_WHITE,
-      }}
+          color: style.color || COLOR_WHITE,
+        }}
       >
-      Spark Poll
+        Spark Poll
       </div>
     </div>
   );

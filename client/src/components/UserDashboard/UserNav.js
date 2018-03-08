@@ -15,10 +15,23 @@ const styles = {
     zIndex: 100,
     padding: '8px 32px',
   },
+  buttonStyle: {
+    marginRight: 'auto',
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  navListContainerStyle: {
+    marginLeft: 'auto',
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
   navListStyle: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   navListItemStyle: {
     listStyleType: 'none',
@@ -30,14 +43,30 @@ const styles = {
       marginRight: '3rem',
     },
   },
+  logoStyle: {
+    justifyContent: 'center',
+    color: COLOR_GREY_DARK_15,
+    size: '35px',
+    flex: 1,
+  },
 };
 
 const UserNav = () => {
-  const { containerStyle, navListStyle, navListItemStyle } = styles;
+  const {
+    containerStyle,
+    buttonStyle,
+    navListStyle,
+    navListItemStyle,
+    navListContainerStyle,
+    logoStyle,
+  } = styles;
+
   return (
     <div className="user-nav" style={containerStyle}>
-      <Button secondary>+ New Poll</Button>
-      <Logo style={{ color: COLOR_GREY_DARK_15, size: '35px' }} med />
+      <div style={buttonStyle}>
+        <Button primary>+ New Poll</Button>
+      </div>
+      <Logo style={logoStyle} med />
       <ul style={navListStyle}>
         <li style={navListItemStyle}>
           Hello, Adam!
