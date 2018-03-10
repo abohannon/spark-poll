@@ -67,7 +67,7 @@ class SignupForm extends Component {
     const { containerStyle, headerStyle, buttonContainerStyle } = styles;
     return (
       <form onSubmit={this.handleSubmit} style={containerStyle}>
-        <div style={headerStyle}>Sign up to create your first form!</div>
+        <div style={headerStyle}>Sign up to create your first poll!</div>
         <div>
           <Field name="firstName" type="text" component={Input} hintText="Jane Doe" />
         </div>

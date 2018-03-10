@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserNav from './UserNav';
+import Header from './Header';
 import { GridDisplay } from '../common';
 
 const styles = {
@@ -11,7 +12,7 @@ const styles = {
   mainStyle: {
     backgroundColor: '#f6f6f6',
     flex: 1,
-    padding: '6rem 10rem',
+    padding: '2rem 10rem',
   },
 };
 
@@ -22,6 +23,7 @@ class Dashboard extends Component {
       <div className="user-dashboard" style={styles.dashboardStyle}>
         <UserNav />
         <div className="user-dashboard__main" style={styles.mainStyle}>
+          <Header title="Your Dashboard" />
           <GridDisplay />
         </div>
       </div>

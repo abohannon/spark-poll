@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import {
   COLOR_PINK,
   COLOR_WHITE,
+  COLOR_BLUE_LIGHT,
 } from '../../constants/style';
 
 const primaryProps = {
@@ -65,15 +66,18 @@ const secondaryProps = {
 };
 
 const Button = ({
-  children, type, primary, secondary, inverted,
+  children, type, primary, secondary, inverted, blue,
 }) => {
   let button = null;
+  const blueProps = { ...primaryProps, buttonStyle: { background: COLOR_BLUE_LIGHT } };
   if (primary) {
     button = <RaisedButton type={type} label={children} {...primaryProps} />;
   } else if (inverted) {
     button = <RaisedButton type={type} label={children} {...invertedProps} />;
   } else if (secondary) {
     button = <FlatButton type={type} label={children} {...secondaryProps} />;
+  } else if (blue) {
+    button = <RaisedButton type={type} label={children} {...blueProps} />;
   }
 
   return button;
