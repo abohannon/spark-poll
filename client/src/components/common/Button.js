@@ -82,9 +82,11 @@ const Button = ({
   }
 
   return (
-    <Link to={href || '#'}>
-      {button}
-    </Link>
+    href
+      ? <Link to={href || '#'}>
+        {button}
+        </Link>
+      : button
   );
 };
 
