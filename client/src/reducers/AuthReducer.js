@@ -7,6 +7,7 @@ import {
   FETCH_USER,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAIL,
+  LOGOUT_USER,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -76,6 +77,13 @@ export default (state = INITIAL_STATE, action) => {
       const newState = {
         loading: false,
         error: action.payload,
+        isAuthenticated: false,
+      };
+      return { ...state, ...newState };
+    }
+    case LOGOUT_USER: {
+      const newState = {
+        error: action.payload || '',
         isAuthenticated: false,
       };
       return { ...state, ...newState };

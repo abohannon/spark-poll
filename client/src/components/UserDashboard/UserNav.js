@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Radium from 'radium';
 import { Logo, Button } from '../common';
-import { BOX_SHADOW, COLOR_GREY_DARK_15 } from '../../constants/style';
+import { BOX_SHADOW, COLOR_GREY_DARK_15, COLOR_PINK } from '../../constants/style';
 
 const styles = {
   containerStyle: {
@@ -49,9 +51,16 @@ const styles = {
     size: '35px',
     flex: 1,
   },
+  linkStyle: {
+    ':hover': {
+      color: COLOR_PINK,
+      cursor: 'pointer',
+      transform: 'translateY(-2px)',
+    },
+  },
 };
 
-const UserNav = () => {
+const UserNav = (props) => {
   const {
     containerStyle,
     buttonStyle,
@@ -59,6 +68,7 @@ const UserNav = () => {
     navListItemStyle,
     navListContainerStyle,
     logoStyle,
+    linkStyle,
   } = styles;
 
   return (
@@ -71,12 +81,12 @@ const UserNav = () => {
         <li style={navListItemStyle}>
           Hello, Adam!
         </li>
-        <li style={{ ...navListItemStyle, ...navListItemStyle.lastChild }}>
-          Log out
+        <li style={{ ...navListItemStyle, ...navListItemStyle.lastChild, ...linkStyle }}>
+          <Link to="/" onClick={() => props.handleLogout()}>Log out</Link>
         </li>
       </ul>
     </div>
   );
 };
 
-export default UserNav;
+export default Radium(UserNav);

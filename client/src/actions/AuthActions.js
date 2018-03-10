@@ -8,6 +8,7 @@ import {
   FETCH_USER,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAIL,
+  LOGOUT_USER,
 } from './types';
 
 export const createUser = userData => async (dispatch) => {
@@ -35,6 +36,17 @@ export const loginUser = userData => async (dispatch) => {
     console.log('ERROR LOGGING IN USER:', error);
   }
   // TODO: Finish action
+};
+
+export const logout = history => async (dispatch) => {
+  try {
+    dispatch({ type: LOGOUT_USER });
+    localStorage.removeItem('jwtToken');
+    history.push('/');
+  } catch (error) {
+    dispatch({ type: LOGOUT_USER, payload: 'Error logging out user' });
+    console.log('ERROR LOGGING OUT USER:', error);
+  }
 };
 
 export const fetchUser = () => async (dispatch) => {
