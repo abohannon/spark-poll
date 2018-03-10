@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import UserNav from './UserNav';
 import Header from './Header';
+import PollCreateForm from './PollCreateForm';
 import { GridDisplay } from '../common';
 import { logout } from '../../actions/AuthActions';
 
@@ -28,10 +30,11 @@ class Dashboard extends Component {
     console.log('User Dashboard', this.props);
     return (
       <div className="user-dashboard" style={styles.dashboardStyle}>
-        <UserNav handleLogout={this.handleLogout} />
+        <UserNav handleLogout={this.handleLogout} history={this.props.history} />
         <div className="user-dashboard__main" style={styles.mainStyle}>
           <Header title="Your Dashboard" />
-          <GridDisplay />
+          <Route exact path="/dashboard" render={() => <GridDisplay />} />
+          <Route path="/dashboard/create-poll" render={() => <PollCreateForm />} />
         </div>
       </div>
     );

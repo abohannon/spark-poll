@@ -28,7 +28,7 @@ const Header = props => (
       <h2 style={styles.h2}>{props.title}</h2>
     </div>
     <div className="header__buttons">
-      <Button blue>Your Polls</Button>
+      <Button blue href="/dashboard">Your Polls</Button>
       <Button inverted>All Polls</Button>
     </div>
   </div>

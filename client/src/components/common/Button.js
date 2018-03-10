@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -66,7 +67,7 @@ const secondaryProps = {
 };
 
 const Button = ({
-  children, type, primary, secondary, inverted, blue,
+  children, type, primary, secondary, inverted, blue, href,
 }) => {
   let button = null;
   const blueProps = { ...primaryProps, buttonStyle: { background: COLOR_BLUE_LIGHT } };
@@ -80,7 +81,11 @@ const Button = ({
     button = <RaisedButton type={type} label={children} {...blueProps} />;
   }
 
-  return button;
+  return (
+    <Link to={href || '#'}>
+      {button}
+    </Link>
+  );
 };
 
 Button.propTypes = {

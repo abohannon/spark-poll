@@ -74,7 +74,9 @@ const UserNav = (props) => {
   return (
     <div className="user-nav" style={containerStyle}>
       <div style={buttonStyle}>
-        <Button primary>+ New Poll</Button>
+        <Button primary href="/dashboard/create-poll">
+          + New Poll
+        </Button>
       </div>
       <Logo style={logoStyle} med />
       <ul style={navListStyle}>
