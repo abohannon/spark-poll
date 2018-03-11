@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from '../common';
 import ChatBubble from '../../images/icons/ChatBubble';
 import { COLOR_GREY_DARK, COLOR_BLUE_LIGHT, COLOR_GREY_DARK_25 } from '../../constants/style';
@@ -45,6 +46,10 @@ const Header = (props) => {
       </div>
     </div>
   );
+};
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default Header;

@@ -44,7 +44,7 @@ const Input = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <TextField
         type={type}
         hintText={hintText}

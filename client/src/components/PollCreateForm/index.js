@@ -65,8 +65,13 @@ class PollCreateForm extends Component {
   }
 
   handleSubmit = (event) => {
+    const { createPoll } = this.props;
     event.preventDefault();
-    console.log(this.props.createPoll.values);
+    if (createPoll.values && createPoll.values.options && createPoll.values.options[0]) {
+      console.log(createPoll.values);
+    } else {
+      console.log('Please add at least 1 option to your poll!');
+    }
   }
 
   render() {

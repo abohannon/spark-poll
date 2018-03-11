@@ -104,6 +104,14 @@ const Button = ({
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  primary: PropTypes.bool,
+  secondary: PropTypes.bool,
+  inverted: PropTypes.bool,
+  blue: PropTypes.bool,
+  href: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 
