@@ -5,9 +5,9 @@ const OptionsSchema = require('./Options');
 
 const pollSchema = new Schema({
   title: { type: String, required: true },
-  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  user: { type: String, required: true },
+  author: { type: String, required: true },
   dateCreated: { type: Date, default: Date.now },
-  tags: [String],
   totalVotes: Number,
   options: [OptionsSchema],
 });

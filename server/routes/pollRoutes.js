@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+const User = mongoose.model('users');
 const Poll = mongoose.model('polls');
 
 module.exports = (app) => {
@@ -10,10 +11,26 @@ module.exports = (app) => {
   // TODO: Not complete, only for testing
   app.post('/api/create_poll', async (req, res) => {
     try {
-      const { title } = await req.body;
-
-      const newPoll = new Poll({
+      const {
         title,
+        options,
+        email,
+        firstName,
+      } = await req.body;
+
+      const foundUser = await User.findOne({ email }, (err, user) => {
+        if (!err) {
+          console.log('found user:', user);
+        } else {
+          console.log(err);
+        }
+      });
+
+      const newPoll = await new Poll({
+        title,
+        user: foundUser.id,
+        author: firstName,
+        options: options.map(option => ({ name: option })),
       });
 
       await newPoll.save();

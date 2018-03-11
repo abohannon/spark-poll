@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 import { FieldArray, reduxForm } from 'redux-form';
+import { createPoll } from '../../actions';
 import FormFields from './FormFields';
 import { Card } from '../common';
 import { COLOR_GREY_DARK } from '../../constants/style';
@@ -61,14 +62,16 @@ const validate = (values) => {
 
 class PollCreateForm extends Component {
   static propTypes = {
-    createPoll: PropTypes.object.isRequired,
+    newPoll: PropTypes.object.isRequired,
   }
 
   handleSubmit = (event) => {
-    const { createPoll } = this.props;
+    const { newPoll, user } = this.props;
     event.preventDefault();
-    if (createPoll.values && createPoll.values.options && createPoll.values.options[0]) {
-      console.log(createPoll.values);
+    if (newPoll.values && newPoll.values.options && newPoll.values.options[0]) {
+      console.log(newPoll.values);
+      console.log('inside handleSubmit', user);
+      this.props.createPoll(newPoll.values, user);
     } else {
       console.log('Please add at least 1 option to your poll!');
     }
@@ -91,9 +94,12 @@ class PollCreateForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ createPoll: state.form.createPoll });
+const mapStateToProps = state => ({
+  user: state.auth.user,
+  newPoll: state.form.newPoll,
+});
 
 export default reduxForm({
-  form: 'createPoll',
+  form: 'newPoll',
   validate,
-})(connect(mapStateToProps)(Radium(PollCreateForm)));
+})(connect(mapStateToProps, { createPoll })(Radium(PollCreateForm)));
