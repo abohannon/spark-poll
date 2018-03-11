@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import Radium from 'radium';
+import { Field, FieldArray, reduxForm } from 'redux-form';
 import { Card, Button, Input } from '../common';
+import Cross from '../../images/icons/Cross';
+import { BOX_SHADOW, COLOR_GREY_DARK, COLOR_PINK } from '../../constants/style';
 
 const styles = {
   containerStyle: {
@@ -19,54 +23,74 @@ const styles = {
     alignItems: 'center',
     marginTop: '4rem',
   },
+  inputContainerStyle: {
+    display: 'flex',
+    alignItems: 'center',
+    marginRight: '-3rem',
+  },
+  deleteStyle: {
+    cursor: 'pointer',
+    marginLeft: '2rem',
+  },
+  crossStyle: {
+    fill: COLOR_GREY_DARK,
+    width: 10,
+    height: 10,
+    ':hover': {
+      height: 50,
+    },
+  },
 };
 
 
 class PollCreateForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      options: [
-        <Field name="option1" type="text" component={Input} hintText="Option 1" inputType="light" />,
-        <Field name="option2" type="text" component={Input} hintText="Option 2" inputType="light" />,
-      ],
-    };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.props.createPoll.values);
   }
 
-  addOption = () => {
-    const { options } = this.state;
-    const num = this.state.options.length + 1;
-
-    const newOption = <Field name={`option${num}`} type="text" component={Input} hintText={`Option ${num}`} inputType="light" />;
-
-    const newState = [...options];
-    newState.push(newOption);
-
-    this.setState({
-      options: newState,
-    });
-    console.log(this.state);
-  };
+  renderForm = ({ fields }) => {
+    const {
+      inputContainerStyle, formStyle, deleteStyle, crossStyle,
+    } = styles;
+    return (
+      <form style={formStyle} onSubmit={this.handleSubmit}>
+        <Field name="title" type="text" component={Input} hintText="Poll title" inputType="light" />
+        {fields.map((option, index) => (
+          <div key={index} style={inputContainerStyle}>
+            <Field
+              name={option}
+              type="text"
+              component={Input}
+              hintText={`Option ${index + 1}`}
+              inputType="light"
+            />
+            <div onClick={() => fields.remove(index)} style={deleteStyle}>
+              <Cross {...crossStyle} />
+            </div>
+          </div>
+        ))}
+        <Button secondary onClick={() => fields.push()}>Add option</Button>
+        <Button type="submit" primary>Save poll</Button>
+      </form>
+    );
+  }
 
   render() {
+    const { containerStyle, cardStyle } = styles;
     return (
-      <div className="poll-create-form" style={styles.containerStyle}>
-        <Card type="wide" style={styles.cardStyle}>
+      <div className="poll-create-form" style={containerStyle}>
+        <Card type="wide" style={cardStyle}>
           <h2>Create a new poll</h2>
-          <form style={styles.formStyle}>
-            <Field name="title" type="text" component={Input} hintText="Poll title" inputType="light" />
-            {this.state.options}
-            <Button secondary>Save poll</Button>
-            <Button secondary onClick={() => this.addOption()}>Add option</Button>
-            <Button secondary>Delete option</Button>
-          </form>
+          <FieldArray name="options" component={this.renderForm} />
         </Card>
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({ createPoll: state.form.createPoll });
+
 export default reduxForm({
   form: 'createPoll',
-})(PollCreateForm);
+})(connect(mapStateToProps)(Radium(PollCreateForm)));
