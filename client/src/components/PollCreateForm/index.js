@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Radium from 'radium';
-import { Field, FieldArray, reduxForm } from 'redux-form';
-import { Card, Button, Input } from '../common';
-import Cross from '../../images/icons/Cross';
-import { BOX_SHADOW, COLOR_GREY_DARK, COLOR_PINK } from '../../constants/style';
+import { FieldArray, reduxForm } from 'redux-form';
+import FormFields from './FormFields';
+import { Card } from '../common';
+import { COLOR_GREY_DARK } from '../../constants/style';
 
 const styles = {
   containerStyle: {
     display: 'flex',
     justifyContent: 'center',
+    position: 'relative',
   },
   cardStyle: {
     display: 'flex',
@@ -42,38 +44,29 @@ const styles = {
   },
 };
 
+const validate = (values) => {
+  const errors = {};
+  const requiredFields = [
+    'title',
+  ];
+
+  requiredFields.forEach((field) => {
+    if (!values[field]) {
+      errors[field] = 'Required';
+    }
+  });
+
+  return errors;
+};
 
 class PollCreateForm extends Component {
+  static propTypes = {
+    createPoll: PropTypes.object.isRequired,
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.props.createPoll.values);
-  }
-
-  renderForm = ({ fields }) => {
-    const {
-      inputContainerStyle, formStyle, deleteStyle, crossStyle,
-    } = styles;
-    return (
-      <form style={formStyle} onSubmit={this.handleSubmit}>
-        <Field name="title" type="text" component={Input} hintText="Poll title" inputType="light" />
-        {fields.map((option, index) => (
-          <div key={index} style={inputContainerStyle}>
-            <Field
-              name={option}
-              type="text"
-              component={Input}
-              hintText={`Option ${index + 1}`}
-              inputType="light"
-            />
-            <div onClick={() => fields.remove(index)} style={deleteStyle}>
-              <Cross {...crossStyle} />
-            </div>
-          </div>
-        ))}
-        <Button secondary onClick={() => fields.push()}>Add option</Button>
-        <Button type="submit" primary>Save poll</Button>
-      </form>
-    );
   }
 
   render() {
@@ -82,7 +75,11 @@ class PollCreateForm extends Component {
       <div className="poll-create-form" style={containerStyle}>
         <Card type="wide" style={cardStyle}>
           <h2>Create a new poll</h2>
-          <FieldArray name="options" component={this.renderForm} />
+          <FieldArray
+            name="options"
+            handleSubmit={this.handleSubmit}
+            component={FormFields}
+          />
         </Card>
       </div>
     );
@@ -93,4 +90,5 @@ const mapStateToProps = state => ({ createPoll: state.form.createPoll });
 
 export default reduxForm({
   form: 'createPoll',
+  validate,
 })(connect(mapStateToProps)(Radium(PollCreateForm)));

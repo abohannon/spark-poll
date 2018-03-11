@@ -30,7 +30,7 @@ const lightStyles = {
 
 const Input = (props) => {
   const {
-    input, hintText, type, inputType,
+    input, hintText, type, inputType, meta: { touched, error, warning },
   } = props;
 
   const renderStyle = () => {
@@ -44,15 +44,18 @@ const Input = (props) => {
   };
 
   return (
-    <TextField
-      type={type}
-      hintText={hintText}
-      hintStyle={renderStyle().hintStyle}
-      underlineFocusStyle={renderStyle().underlineFocusStyle}
-      inputStyle={renderStyle().inputStyle}
-      style={{ marginTop: 2 }}
-      {...input}
-    />
+    <div>
+      <TextField
+        type={type}
+        hintText={hintText}
+        hintStyle={renderStyle().hintStyle}
+        underlineFocusStyle={renderStyle().underlineFocusStyle}
+        inputStyle={renderStyle().inputStyle}
+        style={{ marginTop: 2 }}
+        {...input}
+      />
+      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
   );
 };
 

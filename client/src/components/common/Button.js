@@ -9,7 +9,7 @@ import {
   COLOR_BLUE_LIGHT,
 } from '../../constants/style';
 
-const primaryProps = {
+const primaryStyle = {
   buttonStyle: {
     background: COLOR_PINK,
   },
@@ -30,7 +30,7 @@ const primaryProps = {
   },
 };
 
-const invertedProps = {
+const invertedStyle = {
   buttonStyle: {
     background: COLOR_WHITE,
   },
@@ -51,7 +51,7 @@ const invertedProps = {
   },
 };
 
-const secondaryProps = {
+const secondaryStyle = {
   labelStyle: {
     color: COLOR_PINK,
     fontSize: '1.2rem',
@@ -66,19 +66,31 @@ const secondaryProps = {
   },
 };
 
+const blueStyle = { ...primaryStyle, buttonStyle: { background: COLOR_BLUE_LIGHT } };
+
 const Button = ({
-  children, type, primary, secondary, inverted, blue, href, onClick,
+  children,
+  type,
+  primary,
+  secondary,
+  inverted,
+  blue,
+  href,
+  onClick,
+  disabled,
 }) => {
   let button = null;
-  const blueProps = { ...primaryProps, buttonStyle: { background: COLOR_BLUE_LIGHT } };
+  const buttonProps = {
+    type, label: children, onClick, disabled,
+  };
   if (primary) {
-    button = <RaisedButton type={type} label={children} onClick={onClick} {...primaryProps} />;
+    button = <RaisedButton {...buttonProps} {...primaryStyle} />;
   } else if (inverted) {
-    button = <RaisedButton type={type} label={children} onClick={onClick} {...invertedProps} />;
+    button = <RaisedButton {...buttonProps} {...invertedStyle} />;
   } else if (secondary) {
-    button = <FlatButton type={type} label={children} onClick={onClick} {...secondaryProps} />;
+    button = <FlatButton {...buttonProps} {...secondaryStyle} />;
   } else if (blue) {
-    button = <RaisedButton type={type} label={children} onClick={onClick} {...blueProps} />;
+    button = <RaisedButton {...buttonProps} {...blueStyle} />;
   }
 
   return (
