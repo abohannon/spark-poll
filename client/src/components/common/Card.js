@@ -14,7 +14,9 @@ const styles = {
   },
 };
 
-const Card = ({ zDepth, type, children }) => {
+const Card = ({
+  zDepth, type, children, style,
+}) => {
   const cardStyle = () => {
     switch (type) {
       case 'narrow':
@@ -28,7 +30,7 @@ const Card = ({ zDepth, type, children }) => {
 
   return (
     <div className="card">
-      <Paper style={cardStyle()} zDepth={zDepth || 1}>
+      <Paper style={{ ...cardStyle(), ...style }} zDepth={zDepth || 1}>
         {children}
       </Paper>
     </div>

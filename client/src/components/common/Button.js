@@ -67,18 +67,18 @@ const secondaryProps = {
 };
 
 const Button = ({
-  children, type, primary, secondary, inverted, blue, href,
+  children, type, primary, secondary, inverted, blue, href, onClick,
 }) => {
   let button = null;
   const blueProps = { ...primaryProps, buttonStyle: { background: COLOR_BLUE_LIGHT } };
   if (primary) {
-    button = <RaisedButton type={type} label={children} {...primaryProps} />;
+    button = <RaisedButton type={type} label={children} onClick={onClick} {...primaryProps} />;
   } else if (inverted) {
-    button = <RaisedButton type={type} label={children} {...invertedProps} />;
+    button = <RaisedButton type={type} label={children} onClick={onClick} {...invertedProps} />;
   } else if (secondary) {
-    button = <FlatButton type={type} label={children} {...secondaryProps} />;
+    button = <FlatButton type={type} label={children} onClick={onClick} {...secondaryProps} />;
   } else if (blue) {
-    button = <RaisedButton type={type} label={children} {...blueProps} />;
+    button = <RaisedButton type={type} label={children} onClick={onClick} {...blueProps} />;
   }
 
   return (

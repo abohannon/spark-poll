@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import UserNav from './UserNav';
 import Header from './Header';
-import PollCreateForm from './PollCreateForm';
+import PollCreateForm from '../PollCreateForm';
 import { GridDisplay } from '../common';
 import { logout } from '../../actions/AuthActions';
 

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { pollsFetch, fetchUser } from '../actions';
 import PrivateRoute from './UserAuth/PrivateRoute';
 import LandingPage from './LandingPage';
-import Dashboard from './UserDashboard/Dashboard';
+import Dashboard from './UserDashboard/';
 
 const history = createHistory();
 

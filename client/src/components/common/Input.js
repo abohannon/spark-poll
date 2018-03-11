@@ -4,26 +4,53 @@ import {
   COLOR_PINK,
   COLOR_WHITE,
   COLOR_BLUE_LIGHT,
+  COLOR_GREY_DARK,
 } from '../../constants/style';
 
-const styles = {
+const darkStyles = {
   hintStyle: {
     color: COLOR_BLUE_LIGHT,
   },
   underlineFocusStyle: {
     borderColor: COLOR_PINK,
   },
+  inputStyle: {
+    color: COLOR_WHITE,
+  },
+};
+
+const lightStyles = {
+  underlineFocusStyle: {
+    borderColor: COLOR_PINK,
+  },
+  inputStyle: {
+    color: COLOR_GREY_DARK,
+  },
 };
 
 const Input = (props) => {
-  const { input, hintText, type } = props;
+  const {
+    input, hintText, type, inputType,
+  } = props;
+
+  const renderStyle = () => {
+    switch (inputType) {
+      case 'light': {
+        return lightStyles;
+      }
+      default:
+        return darkStyles;
+    }
+  };
+
   return (
     <TextField
       type={type}
       hintText={hintText}
-      hintStyle={styles.hintStyle}
-      underlineFocusStyle={styles.underlineFocusStyle}
-      inputStyle={{ color: COLOR_WHITE }}
+      hintStyle={renderStyle().hintStyle}
+      underlineFocusStyle={renderStyle().underlineFocusStyle}
+      inputStyle={renderStyle().inputStyle}
+      style={{ marginTop: 2 }}
       {...input}
     />
   );
