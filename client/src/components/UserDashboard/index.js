@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import UserNav from './UserNav';
 import Header from './Header';
 import PollCreateForm from '../PollCreateForm';
+import PollView from '../PollView';
 import { GridDisplay } from '../common';
 import { logout } from '../../actions/AuthActions';
 
@@ -34,6 +35,7 @@ class Dashboard extends Component {
           <Header title="Your Dashboard" />
           <Route exact path="/dashboard" render={() => <GridDisplay />} />
           <Route path="/dashboard/create-poll" render={() => <PollCreateForm />} />
+          <Route path="/dashboard/poll-view" render={() => <PollView />} />
         </div>
       </div>
     );

@@ -6,7 +6,6 @@ import { FieldArray, reduxForm } from 'redux-form';
 import { createPoll } from '../../actions';
 import FormFields from './FormFields';
 import { Card } from '../common';
-import { COLOR_GREY_DARK } from '../../constants/style';
 
 const styles = {
   containerStyle: {
@@ -19,29 +18,6 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     padding: '4rem',
-  },
-  formStyle: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '4rem',
-  },
-  inputContainerStyle: {
-    display: 'flex',
-    alignItems: 'center',
-    marginRight: '-3rem',
-  },
-  deleteStyle: {
-    cursor: 'pointer',
-    marginLeft: '2rem',
-  },
-  crossStyle: {
-    fill: COLOR_GREY_DARK,
-    width: 10,
-    height: 10,
-    ':hover': {
-      height: 50,
-    },
   },
 };
 
