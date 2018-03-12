@@ -21,9 +21,8 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CREATE_USER_SUCCESS: {
       const newState = {
-        create_user_success: action.payload,
+        create_user_success: 'user successfully created',
         create_user_fail: '',
-        isAuthenticated: true,
       };
       return { ...state, ...newState };
     }
@@ -42,7 +41,6 @@ export default (state = INITIAL_STATE, action) => {
     }
     case LOGIN_USER_SUCCESS: {
       const newState = {
-        user: action.payload,
         isAuthenticated: true,
         loading: false,
         error: '',
@@ -85,6 +83,7 @@ export default (state = INITIAL_STATE, action) => {
       const newState = {
         error: action.payload || '',
         isAuthenticated: false,
+        user: '',
       };
       return { ...state, ...newState };
     }

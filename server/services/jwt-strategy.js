@@ -10,7 +10,8 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
 opts.secretOrKey = keys.JWT_SECRET;
 
 const jwtStrategy = new JwtStrategy(opts, (jwt_payload, done) => {
-  User.findOne({ id: jwt_payload.id }, (err, user) => {
+  console.log('jwt_payload', jwt_payload);
+  User.findOne({ email: jwt_payload.email }, (err, user) => {
     if (err) {
       return done(err, false);
     }

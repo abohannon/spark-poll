@@ -14,7 +14,7 @@ import {
 export const createUser = userData => async (dispatch) => {
   const res = await axios.post('/api/create_user', userData);
   if (res.status === 201) {
-    dispatch({ type: CREATE_USER_SUCCESS, payload: res.data });
+    dispatch({ type: CREATE_USER_SUCCESS });
   } else {
     dispatch({ type: CREATE_USER_FAIL, payload: res.data });
   }
@@ -31,7 +31,7 @@ export const loginUser = userData => async (dispatch) => {
     }
 
     localStorage.setItem('jwtToken', res.data.token);
-    dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data });
+    dispatch({ type: LOGIN_USER_SUCCESS });
   } catch (error) {
     console.log('ERROR LOGGING IN USER:', error);
   }

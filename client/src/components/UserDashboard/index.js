@@ -27,7 +27,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log('User Dashboard', this.props);
     return (
       <div className="user-dashboard" style={styles.dashboardStyle}>
         <UserNav handleLogout={this.handleLogout} history={this.props.history} />
@@ -41,4 +40,6 @@ class Dashboard extends Component {
   }
 }
 
-export default connect(null, { logout })(Dashboard);
+const mapStateToProps = state => ({ user: state.auth.user });
+
+export default connect(mapStateToProps, { logout })(Dashboard);
