@@ -1,7 +1,7 @@
 export const mainNav = [
   {
     label: 'View Polls',
-    path: '/',
+    path: '#polls',
     display: true,
     focus: false,
   },

@@ -1,24 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import MainNav from './MainNav';
 import HeaderSection from './HeaderSection';
 import PollsSection from './PollsSection';
 
-const LandingPage = (props) => {
-  console.log('landing page', props);
-  if (props.authed) {
-    return (
-      <Redirect to="/dashboard" />
-    );
+class LandingPage extends Component {
+  componentWillReceiveProps(nextProps) {
+    // logic for smooth scrolling of hash links
+    const { hash } = nextProps.location;
+    const options = {
+      behavior: 'smooth',
+      block: 'start',
+    };
+    if (hash) {
+      document.querySelector(hash).scrollIntoView(options);
+    }
   }
 
-  return (
-    <div className="landing">
-      <MainNav />
-      <HeaderSection />
-      <PollsSection />
-    </div>
-  );
-};
+  render() {
+    if (this.props.authed) {
+      return (
+        <Redirect to="/dashboard" />
+      );
+    }
+    return (
+      <div className="landing">
+        <MainNav />
+        <HeaderSection />
+        <PollsSection location={this.props.location} />
+      </div>
+    );
+  }
+}
 
 export default LandingPage;

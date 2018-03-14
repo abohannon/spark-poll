@@ -27,7 +27,7 @@ class PollsSection extends Component {
 
     return (
       <div style={pollsSectionContainerStyle}>
-        <h1 style={{ color: COLOR_GREY_DARK }}>Newest Polls</h1>
+        <h1 id="polls" style={{ color: COLOR_GREY_DARK }}>Newest Polls</h1>
       </div>
     );
   }
