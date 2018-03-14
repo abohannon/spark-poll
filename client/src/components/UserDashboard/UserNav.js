@@ -60,13 +60,14 @@ const styles = {
   },
 };
 
+const greeting = props => (props.auth.user ? `Hello, ${props.auth.user.firstName}!` : '');
+
 const UserNav = (props) => {
   const {
     containerStyle,
     buttonStyle,
     navListStyle,
     navListItemStyle,
-    navListContainerStyle,
     logoStyle,
     linkStyle,
   } = styles;
@@ -81,7 +82,7 @@ const UserNav = (props) => {
       <Logo style={logoStyle} med />
       <ul style={navListStyle}>
         <li style={navListItemStyle}>
-          Hello, Adam!
+          {greeting(props)}
         </li>
         <li style={{ ...navListItemStyle, ...navListItemStyle.lastChild, ...linkStyle }}>
           <Link to="/" onClick={() => props.handleLogout()}>Log out</Link>

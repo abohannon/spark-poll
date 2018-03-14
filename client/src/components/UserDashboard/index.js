@@ -28,9 +28,14 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { history, auth } = this.props;
     return (
       <div className="user-dashboard" style={styles.dashboardStyle}>
-        <UserNav handleLogout={this.handleLogout} history={this.props.history} />
+        <UserNav
+          handleLogout={this.handleLogout}
+          history={history}
+          auth={auth}
+        />
         <div className="user-dashboard__main" style={styles.mainStyle}>
           <Header title="Your Dashboard" />
           <Route exact path="/dashboard" render={() => <GridDisplay />} />
@@ -42,6 +47,6 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({ user: state.auth.user });
+const mapStateToProps = state => ({ auth: state.auth });
 
 export default connect(mapStateToProps, { logout })(Dashboard);
