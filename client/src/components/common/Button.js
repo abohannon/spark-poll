@@ -7,6 +7,7 @@ import {
   COLOR_PINK,
   COLOR_WHITE,
   COLOR_BLUE_LIGHT,
+  COLOR_GREY_DARK_25,
 } from '../../constants/style';
 
 const primaryStyle = {
@@ -67,6 +68,7 @@ const secondaryStyle = {
 };
 
 const blueStyle = { ...primaryStyle, buttonStyle: { background: COLOR_BLUE_LIGHT } };
+const disabledStyle = { ...primaryStyle, buttonStyle: { background: COLOR_GREY_DARK_25 } };
 
 const Button = ({
   children,
@@ -83,7 +85,9 @@ const Button = ({
   const buttonProps = {
     type, label: children, onClick, disabled,
   };
-  if (primary) {
+  if (disabled) {
+    button = <RaisedButton {...buttonProps} {...disabledStyle} />;
+  } else if (primary) {
     button = <RaisedButton {...buttonProps} {...primaryStyle} />;
   } else if (inverted) {
     button = <RaisedButton {...buttonProps} {...invertedStyle} />;

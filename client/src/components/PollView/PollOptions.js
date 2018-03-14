@@ -31,19 +31,35 @@ const options = [
   'Spaghetti Western',
 ];
 
-const PollOptions = () => (
-  <RadioButtonGroup name="pollOptions" style={styles.buttonGroupStyle}>
-    {options.map((option, index) => (
-      <RadioButton
-        index={index}
-        value={option}
-        label={option}
-        style={styles.buttonStyle}
-        uncheckedIcon={<UncheckedIcon />}
-        checkedIcon={<CheckedIcon style={styles.checkedStyle} />}
-      />
-    ))}
-  </RadioButtonGroup>
-);
+const PollOptions = ({ input, ...rest }) => {
+  const {
+    buttonGroupStyle,
+    checkedStyle,
+    buttonStyle,
+  } = styles;
+
+  return (
+    <RadioButtonGroup
+      {...input}
+      {...rest}
+      name="pollOptions"
+      style={buttonGroupStyle}
+      valueSelected={input.value}
+      onChange={(event, value) => input.onChange(value)}
+    >
+      {options.map((option, index) => (
+        <RadioButton
+          key={option + index}
+          index={index}
+          value={option}
+          label={option}
+          style={buttonStyle}
+          uncheckedIcon={<UncheckedIcon />}
+          checkedIcon={<CheckedIcon style={checkedStyle} />}
+        />
+        ))}
+    </RadioButtonGroup>
+  );
+};
 
 export default PollOptions;
