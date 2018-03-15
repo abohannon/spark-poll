@@ -20,8 +20,8 @@ class App extends Component {
 
   componentWillMount() {
     this.props.pollsFetch();
-    this.props.fetchUser();
   }
+
   render() {
     const { isAuthenticated } = this.props.auth;
     return (

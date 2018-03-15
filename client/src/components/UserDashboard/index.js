@@ -6,7 +6,7 @@ import Header from './Header';
 import PollCreateForm from '../PollCreateForm';
 import PollView from '../PollView';
 import { GridDisplay } from '../common';
-import { logout } from '../../actions/AuthActions';
+import { logout, fetchUser } from '../../actions/AuthActions';
 
 const styles = {
   dashboardStyle: {
@@ -22,6 +22,10 @@ const styles = {
 };
 
 class Dashboard extends Component {
+  componentWillMount() {
+    this.props.fetchUser();
+  }
+
   handleLogout = () => {
     const { logout, history } = this.props;
     logout(history);
@@ -49,4 +53,4 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({ auth: state.auth });
 
-export default connect(mapStateToProps, { logout })(Dashboard);
+export default connect(mapStateToProps, { logout, fetchUser })(Dashboard);
