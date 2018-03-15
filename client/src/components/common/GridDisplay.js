@@ -8,12 +8,9 @@ const styles = {
   },
 };
 
-const GridDisplay = () => (
+const GridDisplay = ({ children }) => (
   <div className="grid-display" style={styles.gridStyle}>
-    <Card />
-    <Card />
-    <Card />
-    <Card />
+    {children}
   </div>
 );
 

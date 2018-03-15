@@ -5,8 +5,9 @@ import UserNav from './UserNav';
 import Header from './Header';
 import PollCreateForm from '../PollCreateForm';
 import PollView from '../PollView';
+import PollCard from '../PollCard';
 import { GridDisplay } from '../common';
-import { logout } from '../../actions/AuthActions';
+import { logout, fetchUser } from '../../actions/AuthActions';
 
 const styles = {
   dashboardStyle: {
@@ -22,6 +23,10 @@ const styles = {
 };
 
 class Dashboard extends Component {
+  componentWillMount() {
+    this.props.fetchUser();
+  }
+
   handleLogout = () => {
     const { logout, history } = this.props;
     logout(history);
@@ -38,7 +43,15 @@ class Dashboard extends Component {
         />
         <div className="user-dashboard__main" style={styles.mainStyle}>
           <Header title="Your Dashboard" />
-          <Route exact path="/dashboard" render={() => <GridDisplay />} />
+          <Route
+            exact
+            path="/dashboard"
+            render={() => (
+              <GridDisplay>
+                <PollCard />
+              </GridDisplay>
+          )}
+          />
           <Route path="/dashboard/create-poll" render={() => <PollCreateForm />} />
           <Route path="/dashboard/poll-view" render={() => <PollView />} />
         </div>
@@ -49,4 +62,4 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({ auth: state.auth });
 
-export default connect(mapStateToProps, { logout })(Dashboard);
+export default connect(mapStateToProps, { logout, fetchUser })(Dashboard);

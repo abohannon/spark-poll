@@ -17,7 +17,6 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '4rem',
   },
 };
 
