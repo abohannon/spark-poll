@@ -5,6 +5,7 @@ import UserNav from './UserNav';
 import Header from './Header';
 import PollCreateForm from '../PollCreateForm';
 import PollView from '../PollView';
+import PollCard from '../PollCard';
 import { GridDisplay } from '../common';
 import { logout, fetchUser } from '../../actions/AuthActions';
 
@@ -42,7 +43,15 @@ class Dashboard extends Component {
         />
         <div className="user-dashboard__main" style={styles.mainStyle}>
           <Header title="Your Dashboard" />
-          <Route exact path="/dashboard" render={() => <GridDisplay />} />
+          <Route
+            exact
+            path="/dashboard"
+            render={() => (
+              <GridDisplay>
+                <PollCard />
+              </GridDisplay>
+          )}
+          />
           <Route path="/dashboard/create-poll" render={() => <PollCreateForm />} />
           <Route path="/dashboard/poll-view" render={() => <PollView />} />
         </div>

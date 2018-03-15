@@ -6,11 +6,13 @@ const styles = {
     height: '350px',
     width: '250px',
     margin: '2rem',
+    padding: '2rem',
   },
   wide: {
     minHeight: '350px',
     width: '400px',
     margin: '2rem',
+    padding: '4rem',
   },
 };
 

@@ -9,6 +9,7 @@ export const COLOR_WHITE_50 = 'rgba(255,255,255,0.5)';
 export const COLOR_WHITE_15 = 'rgba(255,255,255,0.15)';
 export const COLOR_PINK = '#FD72B2';
 export const COLOR_GREY_DARK = '#2c2f41';
+export const COLOR_GREY_DARK_50 = 'rgba(44, 47, 65, .50)';
 export const COLOR_GREY_DARK_25 = 'rgba(44, 47, 65, .25)';
 export const COLOR_GREY_DARK_15 = 'rgba(44, 47, 65, .15)';
 export const BOX_SHADOW = '1px 1px 5px 1px rgba(0,0,0, .1)';

@@ -14,7 +14,6 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '4rem',
   },
   h2: {
     lineHeight: 1.125,
