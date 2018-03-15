@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 const User = mongoose.model('users');
+const Polls = mongoose.model('polls');
+
 const {
   findSingleUser,
   setJwtPayload,
@@ -49,7 +51,6 @@ module.exports = (app) => {
     });
   });
 
-  // TODO: Not finished
   app.get(
     '/api/get_user',
     passport.authenticate('jwt', { session: false }),
@@ -58,11 +59,16 @@ module.exports = (app) => {
 
       // check if user exists
       const user = await User.findOne({ _id: id });
+      // then fetch their polls
+      const userPolls = await Polls.find({ user: id });
 
-      // pull of non-sensitive data to pass back to client
-      const { firstName, email } = user;
+      // create a new object with retrieved data
+      const userData = {};
+      userData.firstName = user.firstName;
+      userData.email = user.email;
+      userData.polls = userPolls;
 
-      if (user) return res.status(200).send({ firstName, email });
+      if (user) return res.status(200).send(userData);
 
       return res.status(401).send('Unauthorized');
     },

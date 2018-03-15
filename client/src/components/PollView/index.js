@@ -41,7 +41,7 @@ class PollView extends Component {
     } = styles;
 
     const disabled = !this.props.livePoll || !this.props.livePoll.values;
-
+    console.log('user props', this.props.user);
     return (
       <div className="poll-view" style={containerStyle}>
         <Card type="wide" style={cardStyle}>
@@ -56,7 +56,10 @@ class PollView extends Component {
   }
 }
 
-const mapStateToProps = state => ({ livePoll: state.form.poll });
+const mapStateToProps = state => ({
+  livePoll: state.form.poll,
+  user: state.user,
+});
 
 export default reduxForm({
   form: 'poll',

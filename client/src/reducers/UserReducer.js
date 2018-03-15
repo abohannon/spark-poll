@@ -7,7 +7,6 @@ import {
 const INITIAL_STATE = {
   loading: false,
   error: null,
-  poll: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
