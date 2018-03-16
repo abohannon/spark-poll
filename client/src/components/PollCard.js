@@ -27,7 +27,9 @@ const styles = {
   },
 };
 
-const PollCard = ({ title, votes, date }) => {
+const PollCard = ({
+  title, votes, date, author,
+}) => {
   const {
     cardStyle,
     h2,
@@ -39,9 +41,10 @@ const PollCard = ({ title, votes, date }) => {
   return (
     <Card type="narrow" style={cardStyle}>
       <div>
-        <h2 style={h2}>What's your favorite movie?</h2>
-        <p style={votesStyle}>Total votes: 100</p>
-        <p style={dateStyle}>Date created: 10/10/18</p>
+        <h2 style={h2}>{title}</h2>
+        <p style={votesStyle}>Total votes: {votes}</p>
+        <p style={dateStyle}>Date created: {date}</p>
+        <p style={dateStyle}>Author: {author}</p>
       </div>
       <div style={buttonContainerStyle}>
         <Button style={buttonStyle} secondary>

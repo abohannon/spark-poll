@@ -23,8 +23,22 @@ const styles = {
 };
 
 class Dashboard extends Component {
+  state = {
+    polls: [],
+  }
+
   componentWillMount() {
     this.props.fetchUser();
+    console.log('Component will mount');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.user) {
+      const { polls } = nextProps.auth.user;
+      this.setState({
+        polls,
+      });
+    }
   }
 
   handleLogout = () => {
@@ -34,6 +48,7 @@ class Dashboard extends Component {
 
   render() {
     const { history, auth } = this.props;
+    // const polls = auth.user.polls || null;
     return (
       <div className="user-dashboard" style={styles.dashboardStyle}>
         <UserNav
@@ -47,7 +62,7 @@ class Dashboard extends Component {
             exact
             path="/dashboard"
             render={() => (
-              <GridDisplay>
+              <GridDisplay polls={this.state.polls}>
                 <PollCard />
               </GridDisplay>
           )}

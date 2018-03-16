@@ -5,7 +5,7 @@ const styles = {
   narrow: {
     height: '350px',
     width: '250px',
-    margin: '2rem',
+    margin: '.9rem',
     padding: '2rem',
   },
   wide: {
