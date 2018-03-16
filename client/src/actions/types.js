@@ -15,6 +15,10 @@ export const CREATE_POLL = 'create_poll';
 export const CREATE_POLL_SUCCESS = 'create_poll_success';
 export const CREATE_POLL_FAIL = 'create_poll_fail';
 
+export const DELETE_POLL = 'delete_poll';
+export const DELETE_POLL_SUCCESS = 'delete_poll_success';
+export const DELETE_POLL_FAIL = 'delete_poll_fail';
+
 export const FETCH_POLLS = 'fetch_polls';
 export const FETCH_POLLS_SUCCESS = 'fetch_polls_success';
 export const FETCH_POLLS_FAIL = 'fetch_polls_fail';

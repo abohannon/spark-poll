@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import UserNav from './UserNav';
 import Header from './Header';
 import PollCreateForm from '../PollCreateForm';
@@ -23,18 +24,36 @@ const styles = {
 };
 
 class Dashboard extends Component {
+  static propTypes = {
+    fetchUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
+  }
+
   state = {
     polls: [],
   }
 
   componentWillMount() {
     this.props.fetchUser();
-    console.log('Component will mount');
+  }
+
+  componentDidMount() {
+    const { polls } = this.props.user;
+
+    this.setState({ polls });
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.user) {
-      const { polls } = nextProps.auth.user;
+    /* if props changes in user object, re-fetch
+    from api and set state with new user data */
+    if (JSON.stringify(this.props.user) !== JSON.stringify(nextProps.user)) {
+      this.props.fetchUser();
+
+      const { polls } = nextProps.user;
+
       this.setState({
         polls,
       });
@@ -48,7 +67,6 @@ class Dashboard extends Component {
 
   render() {
     const { history, auth } = this.props;
-    // const polls = auth.user.polls || null;
     return (
       <div className="user-dashboard" style={styles.dashboardStyle}>
         <UserNav
@@ -75,6 +93,6 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({ auth: state.auth });
+const mapStateToProps = state => ({ auth: state.auth, user: state.user });
 
 export default connect(mapStateToProps, { logout, fetchUser })(Dashboard);

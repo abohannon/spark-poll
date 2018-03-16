@@ -1,20 +1,32 @@
 import axios from 'axios';
 import {
+  FETCH_POLLS,
   FETCH_POLLS_SUCCESS,
+  FETCH_POLLS_FAIL,
   CREATE_POLL,
   CREATE_POLL_SUCCESS,
   CREATE_POLL_FAIL,
+  DELETE_POLL,
+  DELETE_POLL_SUCCESS,
+  DELETE_POLL_FAIL,
 } from './types';
 
-export const pollsFetch = () => (dispatch) => {
-  axios.get('/api/fetch_polls')
-    .then((response) => {
-      console.log(response);
-      dispatch({
-        type: FETCH_POLLS_SUCCESS,
-        payload: response.data,
-      });
-    }).catch(err => console.log('ERROR FETCHING POLLS', err));
+export const pollsFetch = () => async (dispatch) => {
+  dispatch({
+    type: FETCH_POLLS,
+  });
+  try {
+    const res = await axios.get('/api/fetch_polls');
+    dispatch({
+      type: FETCH_POLLS_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: FETCH_POLLS_FAIL,
+      payload: error,
+    });
+  }
 };
 
 export const createPoll = (data, user) => async (dispatch) => {
@@ -31,6 +43,21 @@ export const createPoll = (data, user) => async (dispatch) => {
   } catch (error) {
     console.log('ERROR CREATING POLL:', error);
     dispatch({ type: CREATE_POLL_FAIL, payload: error });
+  }
+};
+
+export const deletePoll = id => async (dispatch) => {
+  dispatch({ type: DELETE_POLL });
+  console.log('delete poll action:', id);
+  try {
+    const res = await axios.post('/api/delete_poll', { id });
+    if (res.status !== 200) {
+      dispatch({ type: DELETE_POLL_FAIL, payload: res.data });
+    } else {
+      dispatch({ type: DELETE_POLL_SUCCESS, payload: res.data });
+    }
+  } catch (error) {
+    dispatch({ type: DELETE_POLL_FAIL, payload: error });
   }
 };
 

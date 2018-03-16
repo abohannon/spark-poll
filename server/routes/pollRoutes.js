@@ -41,6 +41,19 @@ module.exports = (app) => {
     }
   });
 
+  app.post('/api/delete_poll', async (req, res) => {
+    const { id } = await req.body;
+    Poll.findOneAndRemove({ _id: id }, (err, poll) => {
+      if (err) return res.status(500).send(err);
+
+      const response = {
+        message: 'Poll successfully deleted',
+        poll,
+      };
+      return res.status(200).send(response);
+    });
+  });
+
   app.get('/api/fetch_polls', async (req, res) => {
     Poll.find({}, (err, polls) => {
       if (!err) {

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card } from './Card';
 import PollCard from '../PollCard';
 
 const styles = {
@@ -16,6 +15,8 @@ const GridDisplay = (props) => {
     <div className="grid-display" style={styles.gridStyle}>
       {currentPolls.map((poll, index) => (
         <PollCard
+          key={poll.title + index}
+          id={poll._id}
           title={poll.title}
           votes="20"
           date={poll.dateCreated}

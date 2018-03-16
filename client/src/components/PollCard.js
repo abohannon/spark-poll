@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Card, Button } from './common';
+import { deletePoll } from '../actions';
 import { COLOR_GREY_DARK, COLOR_GREY_DARK_50 } from '../constants/style';
 
 const styles = {
@@ -27,35 +29,39 @@ const styles = {
   },
 };
 
-const PollCard = ({
-  title, votes, date, author,
-}) => {
-  const {
-    cardStyle,
-    h2,
-    votesStyle,
-    buttonContainerStyle,
-    buttonStyle,
-    dateStyle,
-  } = styles;
-  return (
-    <Card type="narrow" style={cardStyle}>
-      <div>
-        <h2 style={h2}>{title}</h2>
-        <p style={votesStyle}>Total votes: {votes}</p>
-        <p style={dateStyle}>Date created: {date}</p>
-        <p style={dateStyle}>Author: {author}</p>
-      </div>
-      <div style={buttonContainerStyle}>
-        <Button style={buttonStyle} secondary>
-    View
-        </Button>
-        <Button style={buttonStyle} secondary>
-    Delete
-        </Button>
-      </div>
-    </Card>
-  );
-};
+const {
+  cardStyle,
+  h2,
+  votesStyle,
+  buttonContainerStyle,
+  buttonStyle,
+  dateStyle,
+} = styles;
 
-export default PollCard;
+const PollCard = ({
+  id,
+  title,
+  votes,
+  date,
+  author,
+  deletePoll,
+}) => (
+  <Card type="narrow" style={cardStyle}>
+    <div>
+      <h2 style={h2}>{title}</h2>
+      <p style={votesStyle}>Total votes: {votes}</p>
+      <p style={dateStyle}>Date created: {date}</p>
+      <p style={dateStyle}>Author: {author}</p>
+    </div>
+    <div style={buttonContainerStyle}>
+      <Button style={buttonStyle} secondary>
+    View
+      </Button>
+      <Button style={buttonStyle} onClick={() => deletePoll(id)} secondary>
+    Delete
+      </Button>
+    </div>
+  </Card>
+);
+
+export default connect(null, { deletePoll })(PollCard);

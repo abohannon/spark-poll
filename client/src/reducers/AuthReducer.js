@@ -63,10 +63,15 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, ...newState };
     }
     case FETCH_USER_SUCCESS: {
+      const { firstName, email } = action.payload;
+      const userData = {
+        firstName,
+        email,
+      };
       const newState = {
         loading: false,
         error: '',
-        user: action.payload,
+        user: userData,
         isAuthenticated: true,
       };
       return { ...state, ...newState };
