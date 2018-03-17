@@ -31,6 +31,7 @@ module.exports = (app) => {
         user: foundUser.id,
         author: firstName,
         options: options.map(option => ({ name: option })),
+        totalVotes: 0,
       });
 
       await newPoll.save();
@@ -61,5 +62,24 @@ module.exports = (app) => {
         console.log('Error fetching polls', err);
       }
     });
+  });
+  /* TODO: Complete
+  * This snippet currently updates totalVotes, but had issues
+  * finding subdocuments and updating.
+  */
+  app.patch('/api/update_poll', async (req, res) => {
+    const { id, option } = await req.body;
+    try {
+      const response = await Poll.update(
+        {
+          _id: id,
+        },
+        { $inc: { totalVotes: 1 } },
+      );
+      console.log(response);
+      res.status(200).json({ message: 'Poll updated', response });
+    } catch (error) {
+      if (error) res.status(500).send('Error updating poll');
+    }
   });
 };

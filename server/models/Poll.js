@@ -8,7 +8,7 @@ const pollSchema = new Schema({
   user: { type: String, required: true },
   author: { type: String, required: true },
   dateCreated: { type: Date, default: Date.now },
-  totalVotes: Number,
+  totalVotes: { type: Number, required: true },
   options: [OptionsSchema],
 });
 
