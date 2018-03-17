@@ -5,6 +5,7 @@ export const COLOR_BLUE = 'rgb(92, 108, 187)';
 export const COLOR_BLUE_80 = 'rgba(92, 108, 187, .8)';
 export const COLOR_BLUE_LIGHT = '#A5A6CF';
 export const COLOR_WHITE = '#FBFBFB';
+export const COLOR_WHITE_GREY = '#f6f6f6';
 export const COLOR_WHITE_50 = 'rgba(255,255,255,0.5)';
 export const COLOR_WHITE_15 = 'rgba(255,255,255,0.15)';
 export const COLOR_PINK = '#FD72B2';

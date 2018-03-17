@@ -10,6 +10,7 @@ import PollCard from '../PollCard';
 import { GridDisplay } from '../common';
 import { logout, fetchUser } from '../../actions/AuthActions';
 import { pollsFetch } from '../../actions/PollActions';
+import { COLOR_WHITE_GREY } from '../../constants/style';
 
 const styles = {
   dashboardStyle: {
@@ -18,7 +19,7 @@ const styles = {
     height: '100vh',
   },
   mainStyle: {
-    backgroundColor: '#f6f6f6',
+    backgroundColor: COLOR_WHITE_GREY,
     flex: 1,
     padding: '2rem 10rem',
   },
@@ -38,6 +39,13 @@ class Dashboard extends Component {
     this.props.pollsFetch();
   }
 
+  componentDidUpdate(prevProps) {
+    if (JSON.stringify(prevProps.user.message) !== JSON.stringify(this.props.user.message)) {
+      this.props.fetchUser();
+      this.props.pollsFetch();
+    }
+  }
+
   handleLogout = () => {
     const { logout, history } = this.props;
     logout(history);
@@ -45,8 +53,8 @@ class Dashboard extends Component {
 
   render() {
     const {
- history, auth, user, allPolls 
-} = this.props;
+      history, auth, user, allPolls,
+    } = this.props;
     return (
       <div className="user-dashboard" style={styles.dashboardStyle}>
         <UserNav
@@ -55,7 +63,7 @@ class Dashboard extends Component {
           auth={auth}
         />
         <div className="user-dashboard__main" style={styles.mainStyle}>
-          <Header title="Your Dashboard" />
+          <Header title="Your Dashboard" polls={user.polls} />
           <Route
             exact
             path="/dashboard"

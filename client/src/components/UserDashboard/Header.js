@@ -31,13 +31,14 @@ const Header = (props) => {
   const {
     containerStyle, headerLeftStyle, leftContentStyle, h2,
   } = styles;
+  const { polls, title } = props;
   return (
     <div className="header" style={containerStyle}>
       <div style={headerLeftStyle}>
         <ChatBubble width={36} height={32} fill={COLOR_BLUE_LIGHT} />
         <div style={leftContentStyle}>
-          <h2 style={h2}>{props.title}</h2>
-          <p>No. of polls: 0</p>
+          <h2 style={h2}>{title}</h2>
+          <p>No. of polls: {polls.length}</p>
         </div>
       </div>
       <div className="header__buttons">
