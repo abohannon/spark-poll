@@ -2,7 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Radium from 'radium';
 import { Logo, Button } from '../common';
-import { BOX_SHADOW, COLOR_GREY_DARK_15, COLOR_PINK } from '../../constants/style';
+import {
+  BOX_SHADOW,
+  COLOR_GREY_DARK_15,
+  COLOR_PINK,
+  COLOR_WHITE,
+} from '../../constants/style';
 
 const styles = {
   containerStyle: {
@@ -11,7 +16,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#FFFFF',
+    backgroundColor: COLOR_WHITE,
     boxShadow: BOX_SHADOW,
     flexShrink: 0,
     zIndex: 100,

@@ -2,11 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../common';
 import ChatBubble from '../../images/icons/ChatBubble';
-import { COLOR_GREY_DARK, COLOR_BLUE_LIGHT, COLOR_GREY_DARK_25 } from '../../constants/style';
+import {
+  COLOR_GREY_DARK,
+  COLOR_BLUE_LIGHT,
+  COLOR_GREY_DARK_25,
+} from '../../constants/style';
 
 const styles = {
   containerStyle: {
-    margin: '2rem',
+    margin: '1rem',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -13,15 +13,22 @@ import { pollsFetch } from '../../actions/PollActions';
 import { COLOR_WHITE_GREY } from '../../constants/style';
 
 const styles = {
+  containerStyle: {
+    backgroundColor: COLOR_WHITE_GREY,
+    height: '100vh',
+  },
   dashboardStyle: {
     display: 'flex',
     flexDirection: 'column',
-    height: '100vh',
   },
   mainStyle: {
     backgroundColor: COLOR_WHITE_GREY,
     flex: 1,
     padding: '2rem 10rem',
+    margin: '0 auto',
+    width: '100%',
+    maxWidth: 1275,
+    minWidth: 720,
   },
 };
 
@@ -52,36 +59,39 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { containerStyle, dashboardStyle, mainStyle } = styles;
     const {
       history, auth, user, allPolls,
     } = this.props;
     return (
-      <div className="user-dashboard" style={styles.dashboardStyle}>
-        <UserNav
-          handleLogout={this.handleLogout}
-          history={history}
-          auth={auth}
-        />
-        <div className="user-dashboard__main" style={styles.mainStyle}>
-          <Header title="Your Dashboard" polls={user.polls} />
-          <Route
-            exact
-            path="/dashboard"
-            render={() => <GridDisplay polls={user.polls} />
-            }
+      <div className="container" style={containerStyle}>
+        <div className="user-dashboard" style={dashboardStyle}>
+          <UserNav
+            handleLogout={this.handleLogout}
+            history={history}
+            auth={auth}
           />
-          <Route
-            exact
-            path="/dashboard/polls-all"
-            render={() => <GridDisplay polls={allPolls.data} />
+          <div className="user-dashboard__main" style={mainStyle}>
+            <Header title="Your Dashboard" polls={user.polls} />
+            <Route
+              exact
+              path="/dashboard"
+              render={() => <GridDisplay polls={user.polls} />
             }
-          />
-          <Route
-            path="/dashboard/create-poll"
-            render={() => <PollCreateForm history={history} />
+            />
+            <Route
+              exact
+              path="/dashboard/polls-all"
+              render={() => <GridDisplay polls={allPolls.data} />
             }
-          />
-          <Route path="/dashboard/poll-view" render={() => <PollView />} />
+            />
+            <Route
+              path="/dashboard/create-poll"
+              render={() => <PollCreateForm history={history} />
+            }
+            />
+            <Route path="/dashboard/poll-view" render={() => <PollView />} />
+          </div>
         </div>
       </div>
     );
