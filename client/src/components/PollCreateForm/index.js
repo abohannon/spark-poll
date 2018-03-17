@@ -39,10 +39,6 @@ class PollCreateForm extends Component {
     newPoll: PropTypes.object.isRequired,
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('FORM RECEIVED PROPS');
-  }
-
   handleSubmit = (event) => {
     const { newPoll, user, history } = this.props;
     event.preventDefault();

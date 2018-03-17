@@ -21,6 +21,7 @@ const GridDisplay = (props) => {
           votes="20"
           date={poll.dateCreated}
           author={poll.author}
+          user={poll.user}
         />
     ))}
     </div>

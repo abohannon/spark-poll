@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, Button } from './common';
 import { deletePoll } from '../actions';
@@ -38,30 +38,49 @@ const {
   dateStyle,
 } = styles;
 
-const PollCard = ({
-  id,
-  title,
-  votes,
-  date,
-  author,
-  deletePoll,
-}) => (
-  <Card type="narrow" style={cardStyle}>
-    <div>
-      <h2 style={h2}>{title}</h2>
-      <p style={votesStyle}>Total votes: {votes}</p>
-      <p style={dateStyle}>Date created: {date}</p>
-      <p style={dateStyle}>Author: {author}</p>
-    </div>
-    <div style={buttonContainerStyle}>
-      <Button style={buttonStyle} secondary>
-    View
-      </Button>
-      <Button style={buttonStyle} onClick={() => deletePoll(id)} secondary>
-    Delete
-      </Button>
-    </div>
-  </Card>
-);
+class PollCard extends Component {
+  // check to see which polls are the user's polls
+  renderDeleteButton = (auth, user, id, deletePoll) => {
+    if (auth.user && auth.user.id === user) {
+      return (
+        <Button style={buttonStyle} onClick={() => deletePoll(id)} secondary>
+        Delete
+        </Button>
+      );
+    }
+  }
 
-export default connect(null, { deletePoll })(PollCard);
+  render() {
+    const {
+      id,
+      title,
+      votes,
+      date,
+      author,
+      user,
+      auth,
+      deletePoll,
+    } = this.props;
+
+    return (
+      <Card type="narrow" style={cardStyle}>
+        <div>
+          <h2 style={h2}>{title}</h2>
+          <p style={votesStyle}>Total votes: {votes}</p>
+          <p style={dateStyle}>Date created: {date}</p>
+          <p style={dateStyle}>Author: {author}</p>
+        </div>
+        <div style={buttonContainerStyle}>
+          <Button style={buttonStyle} secondary>
+    View
+          </Button>
+          {this.renderDeleteButton(auth, user, id, deletePoll)}
+        </div>
+      </Card>
+    );
+  }
+}
+
+const mapStateToProps = state => ({ auth: state.auth });
+
+export default connect(mapStateToProps, { deletePoll })(PollCard);

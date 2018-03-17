@@ -66,6 +66,7 @@ module.exports = (app) => {
       const userData = {};
       userData.firstName = user.firstName;
       userData.email = user.email;
+      userData.id = user._id;
       userData.polls = userPolls;
 
       if (user) return res.status(200).send(userData);
