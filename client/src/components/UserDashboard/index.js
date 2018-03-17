@@ -61,7 +61,7 @@ class Dashboard extends Component {
   render() {
     const { containerStyle, dashboardStyle, mainStyle } = styles;
     const {
-      history, auth, user, allPolls,
+      history, auth, user, allPolls, location,
     } = this.props;
     return (
       <div className="container" style={containerStyle}>
@@ -72,7 +72,7 @@ class Dashboard extends Component {
             auth={auth}
           />
           <div className="user-dashboard__main" style={mainStyle}>
-            <Header title="Your Dashboard" polls={user.polls} />
+            <Header title="Your Dashboard" polls={user.polls} location={location} />
             <Route
               exact
               path="/dashboard"

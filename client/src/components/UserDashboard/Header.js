@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../common';
 import ChatBubble from '../../images/icons/ChatBubble';
@@ -31,27 +31,44 @@ const styles = {
   },
 };
 
-const Header = (props) => {
-  const {
-    containerStyle, headerLeftStyle, leftContentStyle, h2,
-  } = styles;
-  const { polls, title } = props;
-  return (
-    <div className="header" style={containerStyle}>
-      <div style={headerLeftStyle}>
-        <ChatBubble width={36} height={32} fill={COLOR_BLUE_LIGHT} />
-        <div style={leftContentStyle}>
-          <h2 style={h2}>{title}</h2>
-          <p>No. of polls: {polls.length}</p>
+class Header extends Component {
+  renderButtons = (location) => {
+    if (location.pathname === '/dashboard/polls-all') {
+      return (
+        <div className="header__buttons">
+          <Button href="/dashboard" inverted>Your Polls</Button>
+          <Button href="/dashboard/polls-all" blue>All Polls</Button>
         </div>
-      </div>
+      );
+    }
+    return (
       <div className="header__buttons">
         <Button href="/dashboard" blue>Your Polls</Button>
         <Button href="/dashboard/polls-all" inverted>All Polls</Button>
       </div>
-    </div>
-  );
-};
+    );
+  }
+
+  render() {
+    const {
+      containerStyle, headerLeftStyle, leftContentStyle, h2,
+    } = styles;
+    const { polls, title, location } = this.props;
+
+    return (
+      <div className="header" style={containerStyle}>
+        <div style={headerLeftStyle}>
+          <ChatBubble width={36} height={32} fill={COLOR_BLUE_LIGHT} />
+          <div style={leftContentStyle}>
+            <h2 style={h2}>{title}</h2>
+            <p>Total polls created: {polls.length}</p>
+          </div>
+        </div>
+        {this.renderButtons(location)}
+      </div>
+    );
+  }
+}
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
