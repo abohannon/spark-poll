@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Radium from 'radium';
 import { FieldArray, reduxForm } from 'redux-form';
 import { createPoll } from '../../actions';
 import FormFields from './FormFields';
@@ -40,13 +39,15 @@ class PollCreateForm extends Component {
     newPoll: PropTypes.object.isRequired,
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('FORM RECEIVED PROPS');
+  }
+
   handleSubmit = (event) => {
-    const { newPoll, user } = this.props;
+    const { newPoll, user, history } = this.props;
     event.preventDefault();
     if (newPoll.values && newPoll.values.options && newPoll.values.options[0]) {
-      console.log(newPoll.values);
-      console.log('inside handleSubmit', user);
-      this.props.createPoll(newPoll.values, user);
+      this.props.createPoll(newPoll.values, user, history);
     } else {
       console.log('Please add at least 1 option to your poll!');
     }
@@ -77,4 +78,4 @@ const mapStateToProps = state => ({
 export default reduxForm({
   form: 'newPoll',
   validate,
-})(connect(mapStateToProps, { createPoll })(Radium(PollCreateForm)));
+})(connect(mapStateToProps, { createPoll })(PollCreateForm));

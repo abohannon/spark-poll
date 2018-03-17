@@ -41,8 +41,8 @@ const Header = (props) => {
         </div>
       </div>
       <div className="header__buttons">
-        <Button blue href="/dashboard">Your Polls</Button>
-        <Button inverted>All Polls</Button>
+        <Button href="/dashboard" blue>Your Polls</Button>
+        <Button href="/dashboard/polls-all" inverted>All Polls</Button>
       </div>
     </div>
   );

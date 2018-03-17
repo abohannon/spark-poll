@@ -9,6 +9,7 @@ import PollView from '../PollView';
 import PollCard from '../PollCard';
 import { GridDisplay } from '../common';
 import { logout, fetchUser } from '../../actions/AuthActions';
+import { pollsFetch } from '../../actions/PollActions';
 
 const styles = {
   dashboardStyle: {
@@ -32,32 +33,9 @@ class Dashboard extends Component {
     history: PropTypes.object.isRequired,
   }
 
-  state = {
-    polls: [],
-  }
-
   componentWillMount() {
     this.props.fetchUser();
-  }
-
-  componentDidMount() {
-    const { polls } = this.props.user;
-
-    this.setState({ polls });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    /* if props changes in user object, re-fetch
-    from api and set state with new user data */
-    if (JSON.stringify(this.props.user) !== JSON.stringify(nextProps.user)) {
-      this.props.fetchUser();
-
-      const { polls } = nextProps.user;
-
-      this.setState({
-        polls,
-      });
-    }
+    this.props.pollsFetch();
   }
 
   handleLogout = () => {
@@ -66,7 +44,9 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { history, auth } = this.props;
+    const {
+ history, auth, user, allPolls 
+} = this.props;
     return (
       <div className="user-dashboard" style={styles.dashboardStyle}>
         <UserNav
@@ -79,13 +59,20 @@ class Dashboard extends Component {
           <Route
             exact
             path="/dashboard"
-            render={() => (
-              <GridDisplay polls={this.state.polls}>
-                <PollCard />
-              </GridDisplay>
-          )}
+            render={() => <GridDisplay polls={user.polls} />
+            }
           />
-          <Route path="/dashboard/create-poll" render={() => <PollCreateForm />} />
+          <Route
+            exact
+            path="/dashboard/polls-all"
+            render={() => <GridDisplay polls={allPolls.data} />
+            }
+          />
+          <Route
+            path="/dashboard/create-poll"
+            render={() => <PollCreateForm history={history} />
+            }
+          />
           <Route path="/dashboard/poll-view" render={() => <PollView />} />
         </div>
       </div>
@@ -93,6 +80,6 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({ auth: state.auth, user: state.user });
+const mapStateToProps = state => ({ auth: state.auth, user: state.user, allPolls: state.polls });
 
-export default connect(mapStateToProps, { logout, fetchUser })(Dashboard);
+export default connect(mapStateToProps, { logout, fetchUser, pollsFetch })(Dashboard);

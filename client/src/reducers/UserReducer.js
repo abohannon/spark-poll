@@ -27,6 +27,7 @@ export default (state = INITIAL_STATE, action) => {
       const newState = {
         loading: false,
         poll: action.payload,
+        message: 'Poll created successfully',
       };
       return { ...state, ...newState };
     }

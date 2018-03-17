@@ -29,7 +29,7 @@ export const pollsFetch = () => async (dispatch) => {
   }
 };
 
-export const createPoll = (data, user) => async (dispatch) => {
+export const createPoll = (data, user, history) => async (dispatch) => {
   dispatch({ type: CREATE_POLL });
   const pollData = { ...data, ...user };
   try {
@@ -39,6 +39,7 @@ export const createPoll = (data, user) => async (dispatch) => {
       dispatch({ type: CREATE_POLL_FAIL, payload: 'Error creating poll' });
     } else {
       dispatch({ type: CREATE_POLL_SUCCESS, payload: res.data });
+      history.push('/dashboard');
     }
   } catch (error) {
     console.log('ERROR CREATING POLL:', error);
