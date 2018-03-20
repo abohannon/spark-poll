@@ -63,23 +63,25 @@ module.exports = (app) => {
       }
     });
   });
-  /* TODO: Complete
-  * This snippet currently updates totalVotes, but had issues
-  * finding subdocuments and updating.
-  */
+
   app.patch('/api/update_poll', async (req, res) => {
     const { id, option } = await req.body;
     try {
-      const response = await Poll.update(
+      const response = await Poll.updateOne(
         {
           _id: id,
+          'options.name': option,
         },
-        { $inc: { totalVotes: 1 } },
+        {
+          $inc: {
+            totalVotes: 1,
+            'options.$.votes': 1,
+          },
+        },
       );
-      console.log(response);
       res.status(200).json({ message: 'Poll updated', response });
     } catch (error) {
-      if (error) res.status(500).send('Error updating poll');
+      if (error) res.status(500).json({ message: 'Error updating poll', error });
     }
   });
 };
