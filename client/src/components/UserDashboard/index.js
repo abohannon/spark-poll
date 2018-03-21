@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import UserNav from './UserNav';
 import Header from './Header';
 import PollCreateForm from '../PollCreateForm';
-import PollView from '../PollView';
-import PollCard from '../PollCard';
 import { GridDisplay } from '../common';
 import { logout, fetchUser } from '../../actions/AuthActions';
 import { pollsFetch } from '../../actions/PollActions';
@@ -90,7 +88,6 @@ class Dashboard extends Component {
               render={() => <PollCreateForm history={history} />
             }
             />
-            <Route path="/dashboard/poll-view" render={() => <PollView />} />
           </div>
         </div>
       </div>
