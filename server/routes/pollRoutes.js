@@ -84,4 +84,15 @@ module.exports = (app) => {
       if (error) res.status(500).json({ message: 'Error updating poll', error });
     }
   });
+
+  app.post('/api/fetch_single_poll', async (req, res) => {
+    const { id } = await req.body;
+    console.log('inside route', req.body);
+    try {
+      const poll = await Poll.findOne({ _id: id });
+      res.status(200).json({ message: 'Poll found', poll });
+    } catch (error) {
+      if (error) res.status(500).json({ message: 'Error fetching single poll', error });
+    }
+  });
 };

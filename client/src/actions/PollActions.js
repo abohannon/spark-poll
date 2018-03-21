@@ -68,7 +68,7 @@ export const deletePoll = id => async (dispatch) => {
 export const fetchSinglePoll = id => async (dispatch) => {
   dispatch({ type: FETCH_SINGLE_POLL });
   try {
-    const res = await axios.get('/api/fetch_single_poll', id);
+    const res = await axios.post('/api/fetch_single_poll', { id });
     dispatch({ type: FETCH_SINGLE_POLL_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({ type: FETCH_SINGLE_POLL_FAIL, payload: error });

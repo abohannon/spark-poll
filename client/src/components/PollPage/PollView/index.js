@@ -28,25 +28,42 @@ const styles = {
 };
 
 class PollView extends Component {
+  state = {
+    title: '',
+    options: [],
+  }
+
+  componentDidUpdate(prevProps) {
+    const { pollData } = this.props;
+    if (JSON.stringify(prevProps.pollData) !== JSON.stringify(pollData)) {
+      this.setState({
+        title: pollData.poll.title,
+        options: pollData.poll.options,
+      });
+    }
+  }
+
   handleSubmit = (event) => {
     const { response } = this.props.livePoll.values;
     console.log(response); // TODO: Remove and complete action.
     console.log('Submit');
     event.preventDefault();
   }
+
   render() {
     const {
       containerStyle, cardStyle, h2, formStyle,
     } = styles;
 
-    const disabled = !this.props.livePoll || !this.props.livePoll.values;
-    console.log('user props', this.props.user);
+    const { livePoll } = this.props;
+
+    const disabled = !livePoll || !livePoll.values;
     return (
       <div className="poll-view" style={containerStyle}>
         <Card type="wide" style={cardStyle}>
-          <h2 style={h2}>What&apos;s your favorite movie genre?</h2>
+          <h2 style={h2}>{this.state.title}</h2>
           <form style={formStyle} onSubmit={this.handleSubmit}>
-            <Field name="response" component={PollOptions} />
+            <Field name="response" options={this.state.options} component={PollOptions} />
             <Button type="submit" primary disabled={disabled}>Submit</Button>
           </form>
         </Card>
@@ -57,7 +74,7 @@ class PollView extends Component {
 
 const mapStateToProps = state => ({
   livePoll: state.form.poll,
-  user: state.user,
+  pollData: state.polls.data,
 });
 
 export default reduxForm({

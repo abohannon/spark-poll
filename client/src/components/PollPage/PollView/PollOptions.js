@@ -24,14 +24,7 @@ const styles = {
   },
 };
 
-const options = [
-  'Horror',
-  'Cyber Punk Noir',
-  'Mockumentary',
-  'Spaghetti Western',
-];
-
-const PollOptions = ({ input, ...rest }) => {
+const PollOptions = ({ input, options, ...rest }) => {
   const {
     buttonGroupStyle,
     checkedStyle,
@@ -49,10 +42,10 @@ const PollOptions = ({ input, ...rest }) => {
     >
       {options.map((option, index) => (
         <RadioButton
-          key={option + index}
+          key={option.name + index}
           index={index}
-          value={option}
-          label={option}
+          value={option.name}
+          label={option.name}
           style={buttonStyle}
           uncheckedIcon={<UncheckedIcon />}
           checkedIcon={<CheckedIcon style={checkedStyle} />}
