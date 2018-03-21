@@ -18,6 +18,7 @@ class LandingPage extends Component {
   }
 
   render() {
+    // TODO: Delete this eventually?
     // if (this.props.authed) {
     //   return (
     //     <Redirect to="/dashboard" />

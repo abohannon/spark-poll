@@ -35,7 +35,7 @@ class App extends Component {
               authed={isAuthenticated}
             />
             <Route
-              path="/poll"
+              path="/poll/:id"
               render={props => <PollPage authed={isAuthenticated} {...props} />}
             />
             <Route
