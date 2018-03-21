@@ -34,11 +34,11 @@ class PollView extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { pollData } = this.props;
-    if (JSON.stringify(prevProps.pollData) !== JSON.stringify(pollData)) {
+    const { poll } = this.props;
+    if (JSON.stringify(prevProps.poll) !== JSON.stringify(poll)) {
       this.setState({
-        title: pollData.poll.title,
-        options: pollData.poll.options,
+        title: poll.title,
+        options: poll.options,
       });
     }
   }
@@ -74,7 +74,7 @@ class PollView extends Component {
 
 const mapStateToProps = state => ({
   livePoll: state.form.poll,
-  pollData: state.polls.data,
+  poll: state.polls.single.poll,
 });
 
 export default reduxForm({

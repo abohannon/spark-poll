@@ -59,7 +59,7 @@ class Dashboard extends Component {
   render() {
     const { containerStyle, dashboardStyle, mainStyle } = styles;
     const {
-      history, auth, user, allPolls, location,
+      history, auth, user, polls, location,
     } = this.props;
     return (
       <div className="container" style={containerStyle}>
@@ -80,7 +80,7 @@ class Dashboard extends Component {
             <Route
               exact
               path="/dashboard/polls-all"
-              render={() => <GridDisplay polls={allPolls.data} />
+              render={() => <GridDisplay polls={polls.all} />
             }
             />
             <Route
@@ -95,6 +95,6 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({ auth: state.auth, user: state.user, allPolls: state.polls });
+const mapStateToProps = state => ({ auth: state.auth, user: state.user, polls: state.polls });
 
 export default connect(mapStateToProps, { logout, fetchUser, pollsFetch })(Dashboard);
