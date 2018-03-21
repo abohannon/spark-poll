@@ -26,3 +26,7 @@ export const FETCH_POLLS_FAIL = 'fetch_polls_fail';
 export const FETCH_SINGLE_POLL = 'fetch_single_poll';
 export const FETCH_SINGLE_POLL_SUCCESS = 'fetch_single_poll_success';
 export const FETCH_SINGLE_POLL_FAIL = 'fetch_single_poll_fail';
+
+export const SUBMIT_POLL = 'submit_poll';
+export const SUBMIT_POLL_SUCCESS = 'submit_poll_success';
+export const SUBMIT_POLL_FAIL = 'submit_poll_fail';

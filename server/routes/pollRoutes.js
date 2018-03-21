@@ -65,7 +65,7 @@ module.exports = (app) => {
   });
 
   app.patch('/api/update_poll', async (req, res) => {
-    const { id, option } = await req.body;
+    const { option, id } = await req.body;
     try {
       const response = await Poll.updateOne(
         {

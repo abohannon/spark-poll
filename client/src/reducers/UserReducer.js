@@ -6,20 +6,34 @@ import {
   DELETE_POLL_SUCCESS,
   DELETE_POLL_FAIL,
   FETCH_USER_SUCCESS,
+  SUBMIT_POLL,
+  SUBMIT_POLL_SUCCESS,
+  SUBMIT_POLL_FAIL,
 } from '../actions/types';
 
 const INITIAL_STATE = {
   loading: false,
-  error: null,
-  message: null,
+  error: '',
+  message: '',
   polls: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case CREATE_POLL: {
+    case SUBMIT_POLL:
+    case CREATE_POLL:
+    case DELETE_POLL: {
       const newState = {
         loading: true,
+      };
+      return { ...state, ...newState };
+    }
+    case CREATE_POLL_FAIL:
+    case DELETE_POLL_FAIL: {
+      const newState = {
+        loading: false,
+        error: action.payload,
+        message: '',
       };
       return { ...state, ...newState };
     }
@@ -31,30 +45,10 @@ export default (state = INITIAL_STATE, action) => {
       };
       return { ...state, ...newState };
     }
-    case CREATE_POLL_FAIL: {
-      const newState = {
-        loading: false,
-        error: action.payload,
-      };
-      return { ...state, ...newState };
-    }
-    case DELETE_POLL: {
-      const newState = {
-        loading: true,
-      };
-      return { ...state, ...newState };
-    }
     case DELETE_POLL_SUCCESS: {
       const newState = {
         loading: false,
         message: action.payload,
-      };
-      return { ...state, ...newState };
-    }
-    case DELETE_POLL_FAIL: {
-      const newState = {
-        loading: false,
-        error: action.payload,
       };
       return { ...state, ...newState };
     }
@@ -64,6 +58,22 @@ export default (state = INITIAL_STATE, action) => {
         loading: false,
         error: '',
         polls,
+      };
+      return { ...state, ...newState };
+    }
+    case SUBMIT_POLL_SUCCESS: {
+      const newState = {
+        loading: false,
+        error: '',
+        message: action.payload,
+      };
+      return { ...state, ...newState };
+    }
+    case SUBMIT_POLL_FAIL: {
+      const newState = {
+        loading: false,
+        error: action.payload,
+        message: '',
       };
       return { ...state, ...newState };
     }

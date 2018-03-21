@@ -5,10 +5,15 @@ import MainNav from '../MainNav';
 import PollView from './PollView';
 import { HeroSection } from '../common';
 
+const styles = {
+  heroStyle: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+};
 class PollPage extends Component {
   componentWillMount() {
-    console.log('======= PollPage mounted');
-
     const pollId = this.props.match.params.id;
     this.props.fetchSinglePoll(pollId);
   }
@@ -17,7 +22,7 @@ class PollPage extends Component {
     return (
       <div>
         <MainNav authed={this.props.authed} />
-        <HeroSection>
+        <HeroSection style={styles.heroStyle}>
           <PollView />
         </HeroSection>
       </div>

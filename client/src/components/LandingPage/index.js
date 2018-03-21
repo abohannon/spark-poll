@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { pollsFetch } from '../../actions';
 import MainNav from '../MainNav';
 import HeaderSection from './HeaderSection';
@@ -27,12 +26,7 @@ class LandingPage extends Component {
     const {
       authed, history, location, polls,
     } = this.props;
-    // TODO: Delete this eventually?
-    // if (authed) {
-    //   return (
-    //     <Redirect to="/dashboard" />
-    //   );
-    // }
+
     return (
       <div className="landing">
         <MainNav authed={authed} />

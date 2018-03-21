@@ -12,6 +12,9 @@ import {
   FETCH_SINGLE_POLL,
   FETCH_SINGLE_POLL_SUCCESS,
   FETCH_SINGLE_POLL_FAIL,
+  SUBMIT_POLL,
+  SUBMIT_POLL_SUCCESS,
+  SUBMIT_POLL_FAIL,
 } from './types';
 
 export const pollsFetch = () => async (dispatch) => {
@@ -72,5 +75,19 @@ export const fetchSinglePoll = id => async (dispatch) => {
     dispatch({ type: FETCH_SINGLE_POLL_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({ type: FETCH_SINGLE_POLL_FAIL, payload: error });
+  }
+};
+
+export const submitPoll = (option, id) => async (dispatch) => {
+  dispatch({ type: SUBMIT_POLL });
+  console.log({ option, id });
+  try {
+    const res = await axios.patch('/api/update_poll', { option, id });
+    if (res.status === 200) {
+      dispatch({ type: SUBMIT_POLL_SUCCESS, payload: res.data });
+      console.log('Status 200: poll submitted successfully');
+    }
+  } catch (error) {
+    dispatch({ type: SUBMIT_POLL_FAIL, payload: error });
   }
 };

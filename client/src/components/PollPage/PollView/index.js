@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Card, Button } from '../../common';
 import { COLOR_GREY_DARK, COLOR_GREY_DARK_50 } from '../../../constants/style';
 import PollOptions from './PollOptions';
+import { submitPoll } from '../../../actions';
 
 const styles = {
   containerStyle: {
@@ -41,6 +42,7 @@ const styles = {
 
 class PollView extends Component {
   state = {
+    id: '',
     title: '',
     options: [],
     author: '',
@@ -52,6 +54,7 @@ class PollView extends Component {
     if (JSON.stringify(prevProps.polls) !== JSON.stringify(polls)) {
       const { poll } = polls.single;
       this.setState({
+        id: poll._id,
         title: poll.title,
         options: poll.options,
         author: poll.author,
@@ -61,9 +64,9 @@ class PollView extends Component {
   }
 
   handleSubmit = (event) => {
-    const { response } = this.props.livePoll.values;
-    console.log(response); // TODO: Remove and complete action.
-    console.log('Submit');
+    const { option } = this.props.livePoll.values;
+    const { id } = this.state;
+    this.props.submitPoll(option, id);
     event.preventDefault();
   }
 
@@ -81,7 +84,7 @@ class PollView extends Component {
           <h2 style={h2}>{this.state.title}</h2>
           <p>Total votes: {this.state.totalVotes}</p>
           <form style={formStyle} onSubmit={this.handleSubmit}>
-            <Field name="response" options={this.state.options} component={PollOptions} />
+            <Field name="option" options={this.state.options} component={PollOptions} />
             <Button type="submit" primary disabled={disabled}>Submit</Button>
           </form>
           <div style={bottomStyle}>
@@ -101,4 +104,4 @@ const mapStateToProps = state => ({
 
 export default reduxForm({
   form: 'poll',
-})(connect(mapStateToProps)(PollView));
+})(connect(mapStateToProps, { submitPoll })(PollView));
