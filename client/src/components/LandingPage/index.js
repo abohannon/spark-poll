@@ -24,20 +24,25 @@ class LandingPage extends Component {
   }
 
   render() {
+    const {
+ authed, history, location, polls 
+} = this.props;
     // TODO: Delete this eventually?
-    // if (this.props.authed) {
+    // if (authed) {
     //   return (
     //     <Redirect to="/dashboard" />
     //   );
     // }
     return (
       <div className="landing">
-        <MainNav authed={this.props.authed} />
-        <HeaderSection history={this.props.history} />
-        <PollsSection location={this.props.location} />
+        <MainNav authed={authed} />
+        <HeaderSection history={history} />
+        <PollsSection location={location} polls={polls} />
       </div>
     );
   }
 }
 
-export default connect(null, { pollsFetch })(LandingPage);
+const mapStateToProps = state => ({ polls: state.polls.all });
+
+export default connect(mapStateToProps, { pollsFetch })(LandingPage);
