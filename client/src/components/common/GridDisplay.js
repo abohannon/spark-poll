@@ -18,7 +18,7 @@ const GridDisplay = (props) => {
           key={poll.title + index}
           id={poll._id}
           title={poll.title}
-          votes="20"
+          votes={poll.totalVotes || 0}
           date={poll.dateCreated}
           author={poll.author}
           user={poll.user}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Card, Button } from './common';
 import { deletePoll } from '../actions';
 import { COLOR_GREY_DARK, COLOR_GREY_DARK_50 } from '../constants/style';
@@ -71,9 +72,11 @@ class PollCard extends Component {
           <p style={dateStyle}>Author: {author}</p>
         </div>
         <div style={buttonContainerStyle}>
-          <Button style={buttonStyle} secondary>
-    View
-          </Button>
+          <Link to={{ pathname: `/poll/${id}` }}>
+            <Button style={buttonStyle} secondary>
+          View
+            </Button>
+          </Link>
           {this.renderDeleteButton(auth, user, id, deletePoll)}
         </div>
       </Card>
