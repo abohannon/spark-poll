@@ -9,6 +9,9 @@ import {
   DELETE_POLL,
   DELETE_POLL_SUCCESS,
   DELETE_POLL_FAIL,
+  FETCH_SINGLE_POLL,
+  FETCH_SINGLE_POLL_SUCCESS,
+  FETCH_SINGLE_POLL_FAIL,
 } from './types';
 
 export const pollsFetch = () => async (dispatch) => {
@@ -62,4 +65,12 @@ export const deletePoll = id => async (dispatch) => {
   }
 };
 
-export const fetch = () => {};
+export const fetchSinglePoll = id => async (dispatch) => {
+  dispatch({ type: FETCH_SINGLE_POLL });
+  try {
+    const res = await axios.get('/api/fetch_single_poll', id);
+    dispatch({ type: FETCH_SINGLE_POLL_SUCCESS, payload: res.data });
+  } catch (error) {
+    dispatch({ type: FETCH_SINGLE_POLL_FAIL, payload: error });
+  }
+};

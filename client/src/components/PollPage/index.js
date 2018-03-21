@@ -4,6 +4,10 @@ import PollView from './PollView';
 import { HeroSection } from '../common';
 
 class PollPage extends Component {
+  componentDidMount() {
+    console.log('======= PollPage mounted');
+  }
+
   render() {
     return (
       <div>

@@ -4,7 +4,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import PropTypes from 'prop-types';
-import { pollsFetch, fetchUser } from '../actions';
 import PrivateRoute from './UserAuth/PrivateRoute';
 import LandingPage from './LandingPage';
 import PollPage from './PollPage';
@@ -15,12 +14,6 @@ const history = createHistory();
 class App extends Component {
   static propTypes = {
     auth: PropTypes.object.isRequired,
-    pollsFetch: PropTypes.func.isRequired,
-    fetchUser: PropTypes.func.isRequired,
-  }
-
-  componentWillMount() {
-    this.props.pollsFetch();
   }
 
   render() {
@@ -48,6 +41,6 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = state => ({ auth: state.auth, polls: state.polls });
+const mapStateToProps = state => ({ auth: state.auth });
 
-export default connect(mapStateToProps, { pollsFetch, fetchUser })(App);
+export default connect(mapStateToProps)(App);
