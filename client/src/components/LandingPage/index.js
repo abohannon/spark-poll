@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import MainNav from './MainNav';
+import MainNav from '../MainNav';
 import HeaderSection from './HeaderSection';
 import PollsSection from './PollsSection';
 
@@ -18,15 +18,15 @@ class LandingPage extends Component {
   }
 
   render() {
-    if (this.props.authed) {
-      return (
-        <Redirect to="/dashboard" />
-      );
-    }
+    // if (this.props.authed) {
+    //   return (
+    //     <Redirect to="/dashboard" />
+    //   );
+    // }
     return (
       <div className="landing">
-        <MainNav />
-        <HeaderSection />
+        <MainNav authed={this.props.authed} />
+        <HeaderSection history={this.props.history} />
         <PollsSection location={this.props.location} />
       </div>
     );

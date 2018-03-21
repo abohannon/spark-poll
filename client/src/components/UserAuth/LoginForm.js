@@ -34,9 +34,9 @@ const styles = {
 
 class LoginForm extends Component {
   handleSubmit = (event) => {
-    const { loginUser, loginForm } = this.props;
+    const { loginUser, loginForm, history } = this.props;
     event.preventDefault();
-    loginUser(loginForm.values);
+    loginUser(loginForm.values, history);
 
     console.log('SUBMIT');
   };

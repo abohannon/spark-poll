@@ -19,6 +19,21 @@ export const mainNav = [
   },
 ];
 
+export const mainNavAuthed = [
+  {
+    label: 'View Polls',
+    path: '#polls',
+    display: true,
+    focus: false,
+  },
+  {
+    label: 'Go to dashboard',
+    path: '/dashboard',
+    display: true,
+    focus: false,
+  },
+];
+
 export const userNav = (userName = 'Friend') => (
   [
     {

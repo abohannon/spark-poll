@@ -2,7 +2,7 @@ import React from 'react';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import UncheckedIcon from 'material-ui/svg-icons/toggle/radio-button-unchecked';
 import CheckedIcon from 'material-ui/svg-icons/toggle/radio-button-checked';
-import { COLOR_PURPLE_LIGHT } from '../../constants/style';
+import { COLOR_PURPLE_LIGHT } from '../../../constants/style';
 
 
 const styles = {

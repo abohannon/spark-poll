@@ -20,7 +20,8 @@ export const createUser = userData => async (dispatch) => {
   }
 };
 
-export const loginUser = userData => async (dispatch) => {
+// TODO: Use history to push to dashboard after login
+export const loginUser = (userData, history) => async (dispatch) => {
   dispatch({ type: LOGIN_USER });
   try {
     const res = await axios.post('/api/login_user', userData);
@@ -32,6 +33,7 @@ export const loginUser = userData => async (dispatch) => {
 
     localStorage.setItem('jwtToken', res.data.token);
     dispatch({ type: LOGIN_USER_SUCCESS });
+    history.push('/dashboard');
   } catch (error) {
     console.log('ERROR LOGGING IN USER:', error);
   }

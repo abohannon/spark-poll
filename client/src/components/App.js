@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { pollsFetch, fetchUser } from '../actions';
 import PrivateRoute from './UserAuth/PrivateRoute';
 import LandingPage from './LandingPage';
+import PollPage from './PollPage';
 import Dashboard from './UserDashboard/';
 
 const history = createHistory();
@@ -32,6 +33,10 @@ class App extends Component {
               path="/dashboard"
               component={Dashboard}
               authed={isAuthenticated}
+            />
+            <Route
+              path="/poll"
+              render={props => <PollPage authed={isAuthenticated} {...props} />}
             />
             <Route
               path="/"

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { Card, Button } from '../common';
+import { Card, Button } from '../../common';
 import PollOptions from './PollOptions';
 
 const styles = {
