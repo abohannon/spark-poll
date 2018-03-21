@@ -25,8 +25,8 @@ class LandingPage extends Component {
 
   render() {
     const {
- authed, history, location, polls 
-} = this.props;
+      authed, history, location, polls,
+    } = this.props;
     // TODO: Delete this eventually?
     // if (authed) {
     //   return (
@@ -36,7 +36,7 @@ class LandingPage extends Component {
     return (
       <div className="landing">
         <MainNav authed={authed} />
-        <HeaderSection history={history} />
+        <HeaderSection authed={authed} history={history} />
         <PollsSection location={location} polls={polls} />
       </div>
     );

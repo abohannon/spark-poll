@@ -56,7 +56,7 @@ const Header = (props) => {
           <span style={{ display: 'block' }}>share polls with</span>
           <span style={{ display: 'block' }}>friends</span>
         </h1>
-        <Button href="/signup" primary margin>Create a poll</Button>
+        <Button href={props.authed ? '/dashboard/create-poll' : '/signup'} primary margin>Create a poll</Button>
       </div>
     </HeroSection>
   );

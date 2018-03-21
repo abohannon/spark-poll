@@ -7,13 +7,13 @@ export const mainNav = [
   },
   {
     label: 'Login',
-    path: 'login',
+    path: '/login',
     display: true,
     focus: false,
   },
   {
     label: 'Sign up',
-    path: 'signup',
+    path: '/signup',
     display: true,
     focus: true,
   },
@@ -22,7 +22,7 @@ export const mainNav = [
 export const mainNavAuthed = [
   {
     label: 'View Polls',
-    path: '#polls',
+    path: '/#polls',
     display: true,
     focus: false,
   },

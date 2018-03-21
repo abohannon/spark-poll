@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Nav, Logo } from '../common';
 import { mainNav, mainNavAuthed } from '../../config/navigation';
 import { COLOR_WHITE } from '../../constants/style';
@@ -24,7 +25,9 @@ class MainNav extends Component {
   render() {
     return (
       <div className="nav" style={styles.navContainerStyle}>
-        <Logo style={{ marginRight: 'auto', color: COLOR_WHITE }} />
+        <Link to="/">
+          <Logo style={{ marginRight: 'auto', color: COLOR_WHITE }} />
+        </Link>
         <Nav type={this.props.authed ? mainNavAuthed : mainNav} />
       </div>
     );
