@@ -47,7 +47,7 @@ module.exports = (app) => {
       if (err) return res.status(500).send(err);
 
       const response = {
-        message: 'Poll successfully deleted',
+        status: 'Poll successfully deleted',
         poll,
       };
       return res.status(200).send(response);
@@ -79,9 +79,9 @@ module.exports = (app) => {
           },
         },
       );
-      res.status(200).json({ message: 'Poll updated', response });
+      res.status(200).json({ status: 'Poll updated', response });
     } catch (error) {
-      if (error) res.status(500).json({ message: 'Error updating poll', error });
+      if (error) res.status(500).json({ status: 'Error updating poll', error });
     }
   });
 
@@ -92,7 +92,7 @@ module.exports = (app) => {
       const poll = await Poll.findOne({ _id: id });
       res.status(200).json({ message: 'Poll found', poll });
     } catch (error) {
-      if (error) res.status(500).json({ message: 'Error fetching single poll', error });
+      if (error) res.status(500).json({ status: 'Error fetching single poll', error });
     }
   });
 };

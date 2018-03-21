@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { Card, Button } from '../../common';
 import { COLOR_GREY_DARK, COLOR_GREY_DARK_50 } from '../../../constants/style';
-import PollOptions from './PollOptions';
 import { submitPoll } from '../../../actions';
+import PollOptions from './PollOptions';
+import PollResults from './PollResults';
+
 
 const styles = {
   containerStyle: {
@@ -75,7 +77,7 @@ class PollView extends Component {
       containerStyle, cardStyle, h2, formStyle, bottomStyle,
     } = styles;
 
-    const { livePoll } = this.props;
+    const { livePoll, user } = this.props;
 
     const disabled = !livePoll || !livePoll.values;
     return (
@@ -83,10 +85,13 @@ class PollView extends Component {
         <Card type="wide" style={cardStyle}>
           <h2 style={h2}>{this.state.title}</h2>
           <p>Total votes: {this.state.totalVotes}</p>
-          <form style={formStyle} onSubmit={this.handleSubmit}>
+          { user.message.status
+          ? <PollResults />
+          : <form style={formStyle} onSubmit={this.handleSubmit}>
             <Field name="option" options={this.state.options} component={PollOptions} />
             <Button type="submit" primary disabled={disabled}>Submit</Button>
-          </form>
+            </form>
+          }
           <div style={bottomStyle}>
             <p>Created by {this.state.author}</p>
             <Link to="#"><p>View results</p></Link>
@@ -100,6 +105,7 @@ class PollView extends Component {
 const mapStateToProps = state => ({
   livePoll: state.form.poll,
   polls: state.polls,
+  user: state.user,
 });
 
 export default reduxForm({

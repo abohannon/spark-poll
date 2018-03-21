@@ -37,11 +37,11 @@ module.exports = (app) => {
     const user = await findSingleUser(req);
 
     if (!user) {
-      return res.status(401).json({ message: 'User not found.' });
+      return res.status(401).json({ status: 'User not found.' });
     }
 
     if (user === 'unauthorized') {
-      return res.status(401).json({ success: false, message: 'Invalid password' });
+      return res.status(401).json({ success: false, status: 'Invalid password' });
     }
 
     const userInfo = setJwtPayload(user);
