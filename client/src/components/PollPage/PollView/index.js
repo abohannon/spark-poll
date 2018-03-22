@@ -88,7 +88,6 @@ class PollView extends Component {
       <div className="poll-view" style={containerStyle}>
         <Card type="wide" style={cardStyle}>
           <h2 style={h2}>{this.state.title}</h2>
-          <p>Total votes: {this.state.totalVotes}</p>
           { this.state.showResults
           ? <PollResults
             fetchSinglePoll={fetchSinglePoll}
@@ -108,7 +107,7 @@ class PollView extends Component {
           }
           <div style={bottomStyle}>
             <p>Created by {this.state.author}</p>
-            <Link to="#"><p>View results</p></Link>
+            <p>Total votes: {this.state.totalVotes}</p>
           </div>
         </Card>
       </div>

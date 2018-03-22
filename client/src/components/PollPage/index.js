@@ -9,7 +9,7 @@ const styles = {
   heroStyle: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    minHeight: '85vh',
   },
 };
 class PollPage extends Component {

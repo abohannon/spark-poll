@@ -13,6 +13,7 @@ const styles = {
   heroStyle: {
     display: 'flex',
     flexDirection: 'row',
+    height: '95vh',
   },
   headerContentStyle: {
     display: 'flex',

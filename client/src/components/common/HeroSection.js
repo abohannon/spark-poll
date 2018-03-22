@@ -7,14 +7,13 @@ import Crowd from '../../images/crowd-low.jpg';
 
 const styles = {
   heroStyle: {
-    height: '95vh',
     width: '100%',
     position: 'relative',
     background: `linear-gradient(to right top, ${COLOR_PURPLE_80}, ${COLOR_BLUE_80}), url(${Crowd})`,
     backgroundSize: 'cover',
     padding: '14rem 20rem',
-    WebkitClipPath: 'polygon(0 0, 100% 0, 100% 85vh, 0% 100%)',
-    clipPath: 'polygon(0 0, 100% 0, 100% 85vh, 0% 100%)',
+    WebkitClipPath: 'polygon(0 0, 100% 0, 100% 90%, 0% 100%)',
+    clipPath: 'polygon(0 0, 100% 0, 100% 90%, 0% 100%)',
   },
 };
 

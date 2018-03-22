@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
-
-// parseData = () => {
-//   const { poll } = this.props.polls.single;
-//   const pollData = {
-//     labels: [],
-//     data: [],
-//   };
-
-//   poll.options.map((option) => {
-//     pollData.labels.push(option.name);
-//     pollData.data.push(option.votes);
-//   });
-
-//   return pollData;
-// }
+import { COLOR_PURPLE_LIGHT, COLOR_PINK } from '../../../constants/style';
 
 class PollResults extends Component {
   state = {
@@ -52,20 +38,29 @@ class PollResults extends Component {
       labels: this.state.labels,
       datasets: [
         {
-          label: 'My First dataset',
-          fillColor: 'rgba(220,220,220,0.5)',
-          strokeColor: 'rgba(220,220,220,0.8)',
-          highlightFill: 'rgba(220,220,220,0.75)',
-          highlightStroke: 'rgba(220,220,220,1)',
           data: this.state.data,
+          backgroundColor: COLOR_PINK,
         },
       ],
     };
 
+    const chartOptions = {
+      legend: { display: false },
+      scales: {
+        xAxes: [{
+          ticks: {
+            beginAtZero: true,
+          },
+        }],
+      },
+    };
+
     return (
       <div>
-        Thanks for voting!
-        <HorizontalBar data={data} />
+        <HorizontalBar
+          data={data}
+          options={chartOptions}
+        />
       </div>
     );
   }

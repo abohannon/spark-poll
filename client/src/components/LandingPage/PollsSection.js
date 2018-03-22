@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { GridDisplay } from '../common';
-import { COLOR_GREY_DARK } from '../../constants/style';
+import { COLOR_GREY_DARK, COLOR_WHITE_GREY } from '../../constants/style';
 
 const styles = {
   pollsSectionContainerStyle: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '14rem 20rem',
-    height: 800,
+    padding: '16rem 20rem 0rem 20rem',
+    minHeight: '120rem',
+    backgroundColor: COLOR_WHITE_GREY,
+    marginTop: '-10rem',
   },
   gridContainerStyle: {
     width: '100%',
