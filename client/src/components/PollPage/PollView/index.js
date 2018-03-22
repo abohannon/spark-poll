@@ -49,6 +49,7 @@ class PollView extends Component {
     options: [],
     author: '',
     totalVotes: '',
+    showResults: false,
   }
 
   componentDidUpdate(prevProps) {
@@ -69,6 +70,7 @@ class PollView extends Component {
     const { option } = this.props.livePoll.values;
     const { id } = this.state;
     this.props.submitPoll(option, id);
+    this.setState({ showResults: true });
     event.preventDefault();
   }
 
@@ -77,20 +79,32 @@ class PollView extends Component {
       containerStyle, cardStyle, h2, formStyle, bottomStyle,
     } = styles;
 
-    const { livePoll, user } = this.props;
-
+    const {
+      livePoll, user, polls, pollId, fetchSinglePoll,
+    } = this.props;
     const disabled = !livePoll || !livePoll.values;
+
     return (
       <div className="poll-view" style={containerStyle}>
         <Card type="wide" style={cardStyle}>
           <h2 style={h2}>{this.state.title}</h2>
           <p>Total votes: {this.state.totalVotes}</p>
-          { user.message.status
-          ? <PollResults />
+          { this.state.showResults
+          ? <PollResults
+            fetchSinglePoll={fetchSinglePoll}
+            pollId={pollId}
+            poll={polls.single.poll}
+          />
           : <form style={formStyle} onSubmit={this.handleSubmit}>
             <Field name="option" options={this.state.options} component={PollOptions} />
-            <Button type="submit" primary disabled={disabled}>Submit</Button>
-            </form>
+            <Button
+              type="submit"
+              primary
+              disabled={disabled}
+            >
+            Submit
+            </Button>
+          </form>
           }
           <div style={bottomStyle}>
             <p>Created by {this.state.author}</p>

@@ -19,11 +19,13 @@ class PollPage extends Component {
   }
 
   render() {
+    const pollId = this.props.match.params.id;
+
     return (
       <div>
         <MainNav authed={this.props.authed} />
         <HeroSection style={styles.heroStyle}>
-          <PollView />
+          <PollView fetchSinglePoll={this.props.fetchSinglePoll} pollId={pollId} />
         </HeroSection>
       </div>
     );
