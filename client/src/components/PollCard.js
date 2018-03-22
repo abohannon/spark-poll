@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { formatDate } from '../util/helpers';
 import { Card, Button } from './common';
 import { deletePoll } from '../actions';
 import { COLOR_GREY_DARK, COLOR_GREY_DARK_50 } from '../constants/style';
@@ -68,7 +69,7 @@ class PollCard extends Component {
         <div>
           <h2 style={h2}>{title}</h2>
           <p style={votesStyle}>Total votes: {votes}</p>
-          <p style={dateStyle}>Date created: {date}</p>
+          <p style={dateStyle}>Date created: {formatDate(new Date(date))}</p>
           <p style={dateStyle}>Author: {author}</p>
         </div>
         <div style={buttonContainerStyle}>
