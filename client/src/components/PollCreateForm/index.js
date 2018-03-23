@@ -44,13 +44,17 @@ class PollCreateForm extends Component {
     event.preventDefault();
     if (newPoll.values && newPoll.values.options && newPoll.values.options[0]) {
       this.props.createPoll(newPoll.values, user, history);
-    } else {
-      console.log('Please add at least 1 option to your poll!');
     }
   }
 
   render() {
     const { containerStyle, cardStyle } = styles;
+
+    const { newPoll } = this.props;
+    const disabled = !newPoll.values
+    || newPoll.values && !newPoll.values.title
+    || !newPoll.values.options;
+
     return (
       <div className="poll-create-form" style={containerStyle}>
         <Card type="wide" style={cardStyle}>
@@ -59,6 +63,7 @@ class PollCreateForm extends Component {
             name="options"
             handleSubmit={this.handleSubmit}
             component={FormFields}
+            disabled={disabled}
           />
         </Card>
       </div>

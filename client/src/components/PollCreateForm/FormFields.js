@@ -37,10 +37,12 @@ const FormFields = ({
   pristine,
   submitting,
   handleSubmit,
+  disabled,
 }) => {
   const {
     inputContainerStyle, formStyle, deleteStyle, crossStyle,
   } = styles;
+  console.log(disabled);
 
   return (
     <form style={formStyle} onSubmit={handleSubmit}>
@@ -67,7 +69,7 @@ const FormFields = ({
         </div>
       ))}
       <Button secondary onClick={() => fields.push()}>Add option</Button>
-      <Button type="submit" disabled={pristine || submitting} primary>Save poll</Button>
+      <Button type="submit" disabled={disabled} primary>Save poll</Button>
     </form>
   );
 };
