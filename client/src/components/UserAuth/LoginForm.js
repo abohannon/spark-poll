@@ -8,6 +8,7 @@ import {
   TEXT_PRIMARY,
 } from '../../constants/style';
 import { loginUser } from '../../actions';
+import { validateEmail, required } from '../../util/helpers';
 
 const styles = {
   containerStyle: {
@@ -47,10 +48,22 @@ class LoginForm extends Component {
       <form onSubmit={this.handleSubmit} style={containerStyle}>
         <div style={headerStyle}>Please login to get started.</div>
         <div>
-          <Field name="email" type="text" component={Input} hintText="name@email.com" />
+          <Field
+            name="email"
+            type="text"
+            component={Input}
+            hintText="name@email.com"
+            validate={[required, validateEmail]}
+          />
         </div>
         <div>
-          <Field name="password" type="password" component={Input} hintText="password" />
+          <Field
+            name="password"
+            type="password"
+            component={Input}
+            hintText="password"
+            validate={required}
+          />
         </div>
         <div style={buttonContainerStyle}>
           <Button type="submit" inverted>Login</Button>

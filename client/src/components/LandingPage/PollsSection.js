@@ -10,7 +10,7 @@ const styles = {
     padding: '16rem 20rem 0rem 20rem',
     minHeight: '120rem',
     backgroundColor: COLOR_WHITE_GREY,
-    marginTop: '-10rem',
+    marginTop: '-12.5rem',
   },
   gridContainerStyle: {
     width: '100%',
