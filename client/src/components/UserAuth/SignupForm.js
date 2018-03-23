@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import { Button, Input } from '../common';
@@ -10,6 +11,7 @@ import {
   COLOR_PINK,
 } from '../../constants/style';
 import { createUser } from '../../actions';
+import { validateEmail, required } from '../../util/helpers';
 
 const styles = {
   containerStyle: {
@@ -59,8 +61,13 @@ class SignupForm extends Component {
           * {this.props.auth.create_user_fail}
         </div>
       );
+    } else if (auth.create_user_success) {
+      return (
+        <div style={{ color: COLOR_PINK, textAlign: 'center', fontSize: '1.6rem' }}>
+          Account successfully created! <Link to="/login">Login &rarr;</Link>
+        </div>
+      );
     }
-    return null;
   }
 
   render() {
@@ -69,13 +76,31 @@ class SignupForm extends Component {
       <form onSubmit={this.handleSubmit} style={containerStyle}>
         <div style={headerStyle}>Sign up to create your first poll!</div>
         <div>
-          <Field name="firstName" type="text" component={Input} hintText="Jane Doe" />
+          <Field
+            name="firstName"
+            type="text"
+            component={Input}
+            hintText="Jane Doe"
+            validate={required}
+          />
         </div>
         <div>
-          <Field name="email" type="text" component={Input} hintText="name@email.com" />
+          <Field
+            name="email"
+            type="text"
+            component={Input}
+            hintText="name@email.com"
+            validate={[required, validateEmail]}
+          />
         </div>
         <div>
-          <Field name="password" type="password" component={Input} hintText="password" />
+          <Field
+            name="password"
+            type="password"
+            component={Input}
+            hintText="password"
+            validate={required}
+          />
         </div>
         <div style={buttonContainerStyle}>
           <Button type="submit" inverted>Sign Up</Button>
