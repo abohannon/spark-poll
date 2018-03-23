@@ -8,7 +8,7 @@ import PollCreateForm from '../PollCreateForm';
 import { GridDisplay } from '../common';
 import { logout, fetchUser } from '../../actions/AuthActions';
 import { pollsFetch } from '../../actions/PollActions';
-import { COLOR_WHITE_GREY } from '../../constants/style';
+import { COLOR_WHITE_GREY, COLOR_WHITE, COLOR_WHITE_GREY_DARK } from '../../constants/style';
 
 const styles = {
   containerStyle: {
@@ -27,6 +27,14 @@ const styles = {
     width: '100%',
     maxWidth: 1275,
     minWidth: 720,
+  },
+  emptyStyle: {
+    fontSize: '3rem',
+    color: COLOR_WHITE_GREY_DARK,
+    textShadow: `0px 2px ${COLOR_WHITE}`,
+    textAlign: 'center',
+    lineHeight: 1.2,
+    marginTop: '8rem',
   },
 };
 
@@ -57,10 +65,14 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { containerStyle, dashboardStyle, mainStyle } = styles;
+    const {
+      containerStyle, dashboardStyle, mainStyle, emptyStyle,
+    } = styles;
+
     const {
       history, auth, user, polls, location,
     } = this.props;
+
     return (
       <div className="container" style={containerStyle}>
         <div className="user-dashboard" style={dashboardStyle}>
@@ -74,7 +86,11 @@ class Dashboard extends Component {
             <Route
               exact
               path="/dashboard"
-              render={() => <GridDisplay polls={user.polls} />
+              render={() => (
+                user.polls.length > 0
+                ? <GridDisplay polls={user.polls} />
+                : <div style={emptyStyle}>No polls yet? No problem.<br />Click + New Poll at the top to get started!</div>
+              )
             }
             />
             <Route
