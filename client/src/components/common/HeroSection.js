@@ -15,6 +15,12 @@ const styles = {
     padding: '0rem 4rem',
     WebkitClipPath: 'polygon(0 0, 100% 0, 100% 90%, 0% 100%)',
     clipPath: 'polygon(0 0, 100% 0, 100% 90%, 0% 100%)',
+    '@media screen and (max-width: 800px)': {
+      padding: '15rem 0rem',
+      height: 'auto',
+      WebkitClipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+    },
   },
 };
 

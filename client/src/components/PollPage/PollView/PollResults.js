@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
 import { HorizontalBar } from 'react-chartjs-2';
 import { COLOR_PURPLE_LIGHT, COLOR_PINK } from '../../../constants/style';
+
+const styles = {
+  resultsContainer: {
+    width: 300,
+    '@media screen and (max-width: 400px)': {
+      width: 200,
+    },
+  },
+};
 
 class PollResults extends Component {
   state = {
@@ -56,7 +66,7 @@ class PollResults extends Component {
     };
 
     return (
-      <div>
+      <div style={styles.resultsContainer}>
         <HorizontalBar
           data={data}
           options={chartOptions}
@@ -66,4 +76,4 @@ class PollResults extends Component {
   }
 }
 
-export default PollResults;
+export default Radium(PollResults);

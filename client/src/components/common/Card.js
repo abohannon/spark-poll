@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 
 const styles = {
@@ -9,34 +9,40 @@ const styles = {
     padding: '2rem',
   },
   wide: {
-    minHeight: '350px',
-    width: '400px',
+    minHeight: 350,
+    maxWidth: 400,
+    minWidth: 300,
     margin: '2rem',
     padding: '4rem',
+    boxSizing: 'border-box',
   },
 };
 
-const Card = ({
-  zDepth, type, children, style,
-}) => {
-  const cardStyle = () => {
-    switch (type) {
-      case 'narrow':
-        return styles.narrow;
-      case 'wide':
-        return styles.wide;
-      default:
-        return styles.narrow;
-    }
-  };
+class Card extends Component {
+  render() {
+    const {
+      zDepth, type, children, style,
+    } = this.props;
 
-  return (
-    <div className="card">
-      <Paper style={{ ...cardStyle(), ...style }} zDepth={zDepth || 1}>
-        {children}
-      </Paper>
-    </div>
-  );
-};
+    const cardStyle = () => {
+      switch (type) {
+        case 'narrow':
+          return styles.narrow;
+        case 'wide':
+          return styles.wide;
+        default:
+          return styles.narrow;
+      }
+    };
+
+    return (
+      <div className="card">
+        <Paper style={{ ...cardStyle(), ...style }} zDepth={zDepth || 1}>
+          {children}
+        </Paper>
+      </div>
+    );
+  }
+}
 
 export { Card };

@@ -39,6 +39,9 @@ const styles = {
     color: COLOR_WHITE,
     fontWeight: 600,
     lineHeight: '1.5',
+    '@media screen and (max-width: 360px)': {
+      fontSize: '3.5rem',
+    },
     '@media screen and (max-width: 800px)': {
       textAlign: 'center',
     },

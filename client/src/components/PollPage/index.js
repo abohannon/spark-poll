@@ -10,6 +10,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     minHeight: '85vh',
+    height: 'auto',
   },
 };
 class PollPage extends Component {

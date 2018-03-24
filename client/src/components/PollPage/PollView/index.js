@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { Card, Button } from '../../common';
 import { COLOR_GREY_DARK, COLOR_GREY_DARK_50 } from '../../../constants/style';
@@ -13,6 +12,7 @@ const styles = {
   containerStyle: {
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
     position: 'relative',
   },
   cardStyle: {
@@ -20,6 +20,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     color: COLOR_GREY_DARK,
+    margin: '1rem',
   },
   h2: {
     lineHeight: 1.125,
