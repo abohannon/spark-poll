@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Radium from 'radium';
 import { Nav, Logo } from '../common';
 import { mainNav, mainNavAuthed } from '../../config/navigation';
 import { COLOR_WHITE } from '../../constants/style';
@@ -18,6 +19,17 @@ const styles = {
     paddingLeft: '20rem',
     paddingRight: '20rem',
     height: '12rem',
+    '@media screen and (max-width: 980px)': {
+      flexWrap: 'wrap',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 0,
+    },
+  },
+  logoStyle: {
+    marginRight: 'auto',
+    color: COLOR_WHITE,
   },
 };
 
@@ -26,7 +38,7 @@ class MainNav extends Component {
     return (
       <div className="nav" style={styles.navContainerStyle}>
         <Link to="/">
-          <Logo style={{ marginRight: 'auto', color: COLOR_WHITE }} />
+          <Logo style={styles.logoStyle} />
         </Link>
         <Nav type={this.props.authed ? mainNavAuthed : mainNav} />
       </div>
@@ -34,4 +46,4 @@ class MainNav extends Component {
   }
 }
 
-export default MainNav;
+export default Radium(MainNav);

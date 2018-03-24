@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { StyleRoot } from 'radium';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
@@ -19,25 +20,27 @@ class App extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
     return (
-      <MuiThemeProvider>
-        <Router history={history}>
-          <Switch>
-            <PrivateRoute
-              path="/dashboard"
-              component={Dashboard}
-              authed={isAuthenticated}
-            />
-            <Route
-              path="/poll/:id"
-              render={props => <PollPage authed={isAuthenticated} {...props} />}
-            />
-            <Route
-              path="/"
-              render={props => <LandingPage authed={isAuthenticated} {...props} />}
-            />
-          </Switch>
-        </Router>
-      </MuiThemeProvider>
+      <StyleRoot>
+        <MuiThemeProvider>
+          <Router history={history}>
+            <Switch>
+              <PrivateRoute
+                path="/dashboard"
+                component={Dashboard}
+                authed={isAuthenticated}
+              />
+              <Route
+                path="/poll/:id"
+                render={props => <PollPage authed={isAuthenticated} {...props} />}
+              />
+              <Route
+                path="/"
+                render={props => <LandingPage authed={isAuthenticated} {...props} />}
+              />
+            </Switch>
+          </Router>
+        </MuiThemeProvider>
+      </StyleRoot>
     );
   }
 }

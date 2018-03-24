@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Radium from 'radium';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Input } from '../common';
 import {
@@ -17,8 +18,11 @@ const styles = {
     justifyContent: 'center',
     background: COLOR_WHITE_15,
     padding: '6rem 6rem 3rem 6rem',
-    marginRight: '2rem',
     borderRadius: 2,
+    '@media screen and (max-width: 360px)': {
+      alignItems: 'center',
+      padding: '6rem 3rem',
+    },
   },
   headerStyle: {
     fontSize: TEXT_PRIMARY,
@@ -77,6 +81,8 @@ const mapStateToProps = state => ({
   loginForm: state.form.login,
   auth: state.auth,
 });
+
+LoginForm = Radium(LoginForm);
 
 export default reduxForm({
   form: 'login',

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Radium from 'radium';
 import {
   COLOR_PURPLE_80,
   COLOR_BLUE_80,
@@ -11,16 +12,22 @@ const styles = {
     position: 'relative',
     background: `linear-gradient(to right top, ${COLOR_PURPLE_80}, ${COLOR_BLUE_80}), url(${Crowd})`,
     backgroundSize: 'cover',
-    padding: '14rem 20rem',
+    padding: '0rem 4rem',
     WebkitClipPath: 'polygon(0 0, 100% 0, 100% 90%, 0% 100%)',
     clipPath: 'polygon(0 0, 100% 0, 100% 90%, 0% 100%)',
   },
 };
 
-const HeroSection = props => (
-  <div className="hero" style={{ ...styles.heroStyle, ...props.style }}>
-    {props.children}
-  </div>
-);
+class HeroSection extends Component {
+  render() {
+    return (
+      <div className="hero" style={{ ...styles.heroStyle, ...this.props.style }}>
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+HeroSection = Radium(HeroSection);
 
 export { HeroSection };

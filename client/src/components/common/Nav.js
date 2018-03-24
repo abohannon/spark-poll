@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Radium from 'radium';
 import PropTypes from 'prop-types';
 import { COLOR_WHITE, COLOR_PINK, COLOR_GREY_DARK } from '../../constants/style';
 
@@ -12,11 +13,20 @@ const styles = props => ({
     fontSize: '1.2rem',
     letterSpacing: '.2rem',
     color: !props.inverted ? COLOR_WHITE : COLOR_GREY_DARK,
+    '@media screen and (max-width: 980px)': {
+      marginTop: '2rem',
+      justifyContent: 'center',
+      width: '100%',
+    },
   },
   navListStyle: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    '@media screen and (max-width: 980px)': {
+      width: '40rem',
+      justifyContent: 'space-evenly',
+    },
   },
   navListItemStyle: {
     listStyleType: 'none',
@@ -24,6 +34,11 @@ const styles = props => ({
     textTransform: 'uppercase',
     opacity: '.6',
     transition: 'all .2s',
+    '@media screen and (max-width: 980px)': {
+      margin: 0,
+      display: 'flex',
+      justifyContent: 'space-evenly',
+    },
   },
   navLinkStyle: {
     textDecoration: 'none',
@@ -67,6 +82,7 @@ class Nav extends Component {
         : navListItemStyle
     );
   }
+
   focusState = (item) => {
     const { navLinkStyle } = styles(this.props);
     return (
@@ -105,5 +121,7 @@ class Nav extends Component {
     );
   }
 }
+
+Nav = Radium(Nav);
 
 export { Nav };

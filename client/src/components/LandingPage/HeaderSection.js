@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import Radium from 'radium';
 import {
   COLOR_PINK,
   COLOR_WHITE,
@@ -14,6 +15,15 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     height: '95vh',
+    minHeight: '65rem',
+    '@media screen and (max-width: 800px)': {
+      flexDirection: 'column',
+      alignItems: 'center',
+      padding: '15rem 0rem',
+      height: 'auto',
+      WebkitClipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
+    },
   },
   headerContentStyle: {
     display: 'flex',
@@ -21,11 +31,17 @@ const styles = {
     flex: 2,
     justifyContent: 'center',
     alignItems: 'flex-start',
+    '@media screen and (max-width: 800px)': {
+      alignItems: 'center',
+    },
   },
   headingStyle: {
     color: COLOR_WHITE,
     fontWeight: 600,
     lineHeight: '1.5',
+    '@media screen and (max-width: 800px)': {
+      textAlign: 'center',
+    },
   },
   buttonStyle: {
     fontSize: TEXT_PRIMARY,
@@ -35,8 +51,13 @@ const styles = {
   authContainerStyle: {
     display: 'flex',
     flex: 2,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
+    paddingRight: '4rem',
+    '@media screen and (max-width: 800px)': {
+      marginBottom: '4rem',
+      paddingRight: 0,
+    },
   },
 };
 
@@ -54,8 +75,8 @@ const Header = (props) => {
       <div className="header__content" style={headerContentStyle}>
         <h1 style={headingStyle}>
           <span style={{ display: 'block' }}>Create and</span>
-          <span style={{ display: 'block' }}>share polls with</span>
-          <span style={{ display: 'block' }}>friends</span>
+          <span style={{ display: 'block' }}>share polls</span>
+          <span style={{ display: 'block' }}>with friends</span>
         </h1>
         <Button href={props.authed ? '/dashboard/create-poll' : '/signup'} primary margin>Create a poll</Button>
       </div>
@@ -63,4 +84,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+export default Radium(Header);
