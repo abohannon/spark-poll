@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
 import PropTypes from 'prop-types';
 import { Button } from '../common';
 import ChatBubble from '../../images/icons/ChatBubble';
@@ -15,6 +16,18 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    width: '105.5rem',
+    '@media screen and (max-width: 1152px)': {
+      width: '78.5rem',
+    },
+    '@media screen and (max-width: 850px)': {
+      flexDirection: 'column',
+      width: '50rem',
+    },
+    '@media screen and (max-width: 575px)': {
+      width: '30rem',
+      margin: '0 auto',
+    },
   },
   headerLeftStyle: {
     display: 'flex',
@@ -74,4 +87,4 @@ Header.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default Header;
+export default Radium(Header);

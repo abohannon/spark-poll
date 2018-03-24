@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
+import Radium from 'radium';
 import PropTypes from 'prop-types';
 import UserNav from './UserNav';
 import Header from './Header';
@@ -18,15 +19,16 @@ const styles = {
   dashboardStyle: {
     display: 'flex',
     flexDirection: 'column',
+    backgroundColor: COLOR_WHITE_GREY,
   },
   mainStyle: {
-    backgroundColor: COLOR_WHITE_GREY,
     flex: 1,
-    padding: '2rem 10rem',
-    margin: '0 auto',
-    width: '100%',
-    maxWidth: 1275,
-    minWidth: 720,
+    margin: '5rem auto',
+    padding: '0 4rem',
+    maxWidth: '115rem',
+    '@media screen and (max-width: 575px)': {
+      padding: 0,
+    },
   },
   emptyStyle: {
     fontSize: '3rem',
@@ -118,5 +120,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({ auth: state.auth, user: state.user, polls: state.polls });
+
+Dashboard = Radium(Dashboard);
 
 export default connect(mapStateToProps, { logout, fetchUser, pollsFetch })(Dashboard);

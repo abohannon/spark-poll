@@ -21,17 +21,20 @@ const styles = {
     flexShrink: 0,
     zIndex: 100,
     padding: '8px 32px',
+    '@media screen and (max-width: 800px)': {
+      flexDirection: 'column',
+      height: 'auto',
+      paddingTop: '2rem',
+    },
   },
   buttonStyle: {
     marginRight: 'auto',
     flex: 1,
     justifyContent: 'flex-start',
-  },
-  navListContainerStyle: {
-    marginLeft: 'auto',
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'flex-end',
+    '@media screen and (max-width: 800px)': {
+      marginRight: 0,
+      order: 3,
+    },
   },
   navListStyle: {
     display: 'flex',
@@ -39,6 +42,12 @@ const styles = {
     alignItems: 'center',
     flex: 1,
     justifyContent: 'flex-end',
+    '@media screen and (max-width: 800px)': {
+      order: 2,
+      marginTop: '2rem',
+      justifyContent: 'space-evenly',
+      width: '30rem',
+    },
   },
   navListItemStyle: {
     listStyleType: 'none',
@@ -49,12 +58,19 @@ const styles = {
     lastChild: {
       marginRight: '3rem',
     },
+    '@media screen and (max-width: 800px)': {
+      marginRight: 0,
+    },
   },
   logoStyle: {
     justifyContent: 'center',
     color: COLOR_GREY_DARK_15,
     size: '35px',
     flex: 1,
+    '@media screen and (max-width: 800px)': {
+      order: 1,
+      margin: '2rem 0rem',
+    },
   },
   linkStyle: {
     ':hover': {

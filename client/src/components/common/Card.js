@@ -12,7 +12,7 @@ const styles = {
     minHeight: 350,
     maxWidth: 400,
     minWidth: 300,
-    margin: '2rem',
+    margin: '2rem 0rem',
     padding: '4rem',
     boxSizing: 'border-box',
   },

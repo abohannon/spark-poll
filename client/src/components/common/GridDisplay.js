@@ -7,6 +7,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    width: '108rem',
+    margin: '0 auto',
     '@media screen and (max-width: 1152px)': {
       width: '81rem',
     },
