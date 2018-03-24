@@ -25,7 +25,7 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_POLLS_SUCCESS: {
       const newState = {
         loading: false,
-        all: action.payload,
+        all: action.payload.reverse(),
       };
       return { ...state, ...newState };
     }

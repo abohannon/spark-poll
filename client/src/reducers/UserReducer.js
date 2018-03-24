@@ -57,7 +57,7 @@ export default (state = INITIAL_STATE, action) => {
       const newState = {
         loading: false,
         error: '',
-        polls,
+        polls: polls.reverse(),
       };
       return { ...state, ...newState };
     }
