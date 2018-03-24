@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GridDisplay } from '../common';
+import { GridDisplay, Loader } from '../common';
 import { COLOR_GREY_DARK, COLOR_WHITE_GREY } from '../../constants/style';
 
 const styles = {
@@ -30,7 +30,10 @@ class PollsSection extends Component {
       <div style={pollsSectionContainerStyle}>
         <h1 id="polls" style={{ color: COLOR_GREY_DARK }}>Newest Polls</h1>
         <div style={gridContainerStyle}>
-          <GridDisplay polls={this.props.polls} />
+          { !this.props.polls
+          ? <Loader />
+          : <GridDisplay polls={this.props.polls} />
+        }
         </div>
       </div>
     );

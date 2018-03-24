@@ -5,3 +5,4 @@ export * from './Input';
 export * from './Card';
 export * from './GridDisplay';
 export * from './HeroSection';
+export * from './Loader';

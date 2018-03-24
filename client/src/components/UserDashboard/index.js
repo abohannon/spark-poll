@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import UserNav from './UserNav';
 import Header from './Header';
 import PollCreateForm from '../PollCreateForm';
-import { GridDisplay } from '../common';
+import { GridDisplay, Loader } from '../common';
 import { logout, fetchUser } from '../../actions/AuthActions';
 import { pollsFetch } from '../../actions/PollActions';
 import { COLOR_WHITE_GREY, COLOR_WHITE, COLOR_WHITE_GREY_DARK } from '../../constants/style';
@@ -86,11 +86,17 @@ class Dashboard extends Component {
             <Route
               exact
               path="/dashboard"
-              render={() => (
-                user.polls.length > 0
-                ? <GridDisplay polls={user.polls} />
-                : <div style={emptyStyle}>No polls yet? No problem.<br />Click + New Poll at the top to get started!</div>
-              )
+              render={() => {
+                if (auth.loading || polls.loading || user.loading) {
+                  return <Loader />;
+                }
+                if (user.polls.length < 1) {
+                  return (
+                    <div style={emptyStyle}>No polls yet? No problem.<br />Click + New Poll at the top to get started!</div>
+                  );
+                }
+                return <GridDisplay polls={user.polls} />;
+              }
             }
             />
             <Route
