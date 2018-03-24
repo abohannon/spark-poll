@@ -13,8 +13,10 @@ const styles = {
     backgroundColor: COLOR_WHITE_GREY,
   },
   gridContainerStyle: {
-    width: '100%',
-    marginTop: '10rem',
+    flex: 1,
+    paddingTop: '2rem',
+    margin: '10rem auto',
+    maxWidth: '107.5rem',
   },
 };
 
