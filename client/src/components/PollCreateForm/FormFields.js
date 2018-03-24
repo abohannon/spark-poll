@@ -15,11 +15,11 @@ const styles = {
   inputContainerStyle: {
     display: 'flex',
     alignItems: 'center',
-    marginRight: '-3rem',
+    marginRight: '-2rem',
   },
   deleteStyle: {
     cursor: 'pointer',
-    marginLeft: '2rem',
+    marginLeft: '1rem',
   },
   crossStyle: {
     fill: COLOR_GREY_DARK,

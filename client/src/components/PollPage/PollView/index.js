@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Card, Button } from '../../common';
@@ -14,6 +15,10 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+    margin: '15rem 0',
+    '@media screen and (max-width: 800px)': {
+      margin: 0,
+    },
   },
   cardStyle: {
     display: 'flex',
@@ -104,7 +109,7 @@ class PollView extends Component {
             >
             Submit
             </Button>
-          </form>
+            </form>
           }
           <div style={bottomStyle}>
             <p>Created by {this.state.author}</p>
@@ -121,6 +126,8 @@ const mapStateToProps = state => ({
   polls: state.polls,
   user: state.user,
 });
+
+PollView = Radium(PollView);
 
 export default reduxForm({
   form: 'poll',
