@@ -34,8 +34,6 @@ const styles = {
 const FormFields = ({
   fields,
   meta: { touched, error },
-  pristine,
-  submitting,
   handleSubmit,
   disabled,
 }) => {
@@ -77,9 +75,8 @@ const FormFields = ({
 FormFields.propTypes = {
   fields: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
   handleSubmit: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 export default FormFields;

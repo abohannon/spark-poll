@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { pollsFetch } from '../../actions';
 import MainNav from '../MainNav';
@@ -6,6 +7,14 @@ import HeaderSection from './HeaderSection';
 import PollsSection from './PollsSection';
 
 class LandingPage extends Component {
+  static propTypes = {
+    pollsFetch: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired,
+    authed: PropTypes.bool.isRequired,
+    history: PropTypes.object.isRequired,
+    polls: PropTypes.array.isRequired,
+  }
+
   componentWillMount() {
     this.props.pollsFetch();
   }

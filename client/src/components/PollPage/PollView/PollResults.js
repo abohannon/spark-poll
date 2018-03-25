@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { HorizontalBar } from 'react-chartjs-2';
-import { COLOR_PURPLE_LIGHT, COLOR_PINK } from '../../../constants/style';
+import { COLOR_PINK } from '../../../constants/style';
 
 const styles = {
   resultsContainer: {
@@ -13,6 +14,12 @@ const styles = {
 };
 
 class PollResults extends Component {
+  static propTypes = {
+    poll: PropTypes.object.isRequired,
+    fetchSinglePoll: PropTypes.func.isRequired,
+    pollId: PropTypes.string.isRequired,
+  }
+
   state = {
     labels: [],
     data: [],

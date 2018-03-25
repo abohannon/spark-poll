@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import UncheckedIcon from 'material-ui/svg-icons/toggle/radio-button-unchecked';
 import CheckedIcon from 'material-ui/svg-icons/toggle/radio-button-checked';
@@ -53,6 +54,11 @@ const PollOptions = ({ input, options, ...rest }) => {
         ))}
     </RadioButtonGroup>
   );
+};
+
+PollOptions.propTypes = {
+  options: PropTypes.array.isRequired,
+  input: PropTypes.object.isRequired,
 };
 
 export default PollOptions;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { fetchSinglePoll } from '../../actions';
 import MainNav from '../MainNav';
 import PollView from './PollView';
@@ -14,6 +15,12 @@ const styles = {
   },
 };
 class PollPage extends Component {
+  static propTypes = {
+    fetchSinglePoll: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired,
+    authed: PropTypes.bool.isRequired,
+  }
+
   componentWillMount() {
     const pollId = this.props.match.params.id;
     this.props.fetchSinglePoll(pollId);

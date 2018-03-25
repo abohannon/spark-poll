@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import {
   COLOR_PINK,
@@ -85,6 +86,11 @@ const Header = (props) => {
       </div>
     </HeroSection>
   );
+};
+
+Header.propTypes = {
+  history: PropTypes.object.isRequired,
+  authed: PropTypes.bool.isRequired,
 };
 
 export default Radium(Header);

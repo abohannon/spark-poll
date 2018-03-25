@@ -45,6 +45,12 @@ const styles = {
 };
 
 class Header extends Component {
+  static propTypes = {
+    polls: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired,
+    location: PropTypes.object.isRequired,
+  }
+
   renderButtons = (location) => {
     if (location.pathname === '/dashboard/polls-all') {
       return (
@@ -82,9 +88,5 @@ class Header extends Component {
     );
   }
 }
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-};
 
 export default Radium(Header);

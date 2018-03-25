@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Input } from '../common';
@@ -38,6 +39,12 @@ const styles = {
 };
 
 class LoginForm extends Component {
+  static propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    loginForm: PropTypes.object,
+    history: PropTypes.object.isRequired,
+  }
+
   handleSubmit = (event) => {
     const { loginUser, loginForm, history } = this.props;
     event.preventDefault();

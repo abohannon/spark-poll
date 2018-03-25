@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { GridDisplay, Loader } from '../common';
 import { COLOR_GREY_DARK, COLOR_WHITE_GREY } from '../../constants/style';
@@ -36,6 +37,10 @@ const styles = {
 
 
 class PollsSection extends Component {
+  static propTypes = {
+    polls: PropTypes.array.isRequired,
+  }
+
   render() {
     const {
       pollsSectionContainerStyle,

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import {
   COLOR_PURPLE_80,
@@ -25,6 +26,11 @@ const styles = {
 };
 
 class HeroSection extends Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    style: PropTypes.object.isRequired,
+  }
+
   render() {
     return (
       <div className="hero" style={{ ...styles.heroStyle, ...this.props.style }}>

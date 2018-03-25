@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Spark from '../../images/icons/Spark';
 import { COLOR_WHITE } from '../../constants/style';
 
@@ -30,6 +31,12 @@ const Logo = (props) => {
       </div>
     </div>
   );
+};
+
+Logo.propTypes = {
+  style: PropTypes.object.isRequired,
+  med: PropTypes.bool,
+  color: PropTypes.string,
 };
 
 export { Logo };

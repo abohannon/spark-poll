@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import PollCard from '../PollCard';
 
@@ -22,6 +23,11 @@ const styles = {
 };
 
 class GridDisplay extends Component {
+  static propTypes = {
+    polls: PropTypes.array.isRequired,
+    style: PropTypes.object.isRequired,
+  }
+
   render() {
     const currentPolls = this.props.polls;
     return (

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { formatDate } from '../util/helpers';
-import { Card, Button } from './common';
-import { deletePoll } from '../actions';
-import { COLOR_GREY_DARK, COLOR_GREY_DARK_50 } from '../constants/style';
+import PropTypes from 'prop-types';
+import { formatDate } from '../../util/helpers';
+import { Card, Button } from '../common';
+import { deletePoll } from '../../actions';
+import { COLOR_GREY_DARK, COLOR_GREY_DARK_50 } from '../../constants/style';
 
 const styles = {
   cardStyle: {
@@ -41,6 +42,17 @@ const {
 } = styles;
 
 class PollCard extends Component {
+  static propTypes = {
+    user: PropTypes.string.isRequired,
+    auth: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    votes: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    deletePoll: PropTypes.func.isRequired,
+  }
+
   // check to see which polls are the user's polls
   renderDeleteButton = (auth, user, id, deletePoll) => {
     if (auth.user && auth.user.id === user) {

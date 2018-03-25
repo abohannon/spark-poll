@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -49,6 +50,14 @@ const styles = {
 };
 
 class PollView extends Component {
+  static propTypes = {
+    polls: PropTypes.object.isRequired,
+    livePoll: PropTypes.object,
+    submitPoll: PropTypes.func.isRequired,
+    fetchSinglePoll: PropTypes.func.isRequired,
+    pollId: PropTypes.string.isRequired,
+  }
+
   state = {
     id: '',
     title: '',
@@ -86,7 +95,7 @@ class PollView extends Component {
     } = styles;
 
     const {
-      livePoll, user, polls, pollId, fetchSinglePoll,
+      livePoll, polls, pollId, fetchSinglePoll,
     } = this.props;
     const disabled = !livePoll || !livePoll.values;
 
@@ -124,7 +133,6 @@ class PollView extends Component {
 const mapStateToProps = state => ({
   livePoll: state.form.poll,
   polls: state.polls,
-  user: state.user,
 });
 
 PollView = Radium(PollView);

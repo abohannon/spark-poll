@@ -43,10 +43,13 @@ const styles = {
 class Dashboard extends Component {
   static propTypes = {
     fetchUser: PropTypes.func.isRequired,
+    pollsFetch: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
+    polls: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
   }
 
   componentWillMount() {

@@ -37,6 +37,9 @@ const validate = (values) => {
 class PollCreateForm extends Component {
   static propTypes = {
     newPoll: PropTypes.object.isRequired,
+    createPoll: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   }
 
   handleSubmit = (event) => {

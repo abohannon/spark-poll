@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import {
   COLOR_PINK,
@@ -57,6 +58,14 @@ const Input = (props) => {
       {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
   );
+};
+
+Input.propTypes = {
+  input: PropTypes.object.isRequired,
+  hintText: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  inputType: PropTypes.string,
+  meta: PropTypes.object.isRequired,
 };
 
 export { Input };
