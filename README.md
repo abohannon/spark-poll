@@ -34,7 +34,7 @@ npm run dev
 
 This will start the Node server and connect to MongoDB on localhost:5000. It will also launch the client on localhost:3000
 
-To successfully launch the app, you will need to connect to a db. I suggest creating a free mLab account and created a quick 
+To successfully launch the app, you will need to connect to a db. I suggest creating a free mLab account and creating a quick 
 mongoDB instance. You can do that here https://mlab.com/. 
 
 See below on creating a dev.js file.
@@ -77,17 +77,17 @@ React build script will run and save assets in the client/build directory.
 
 ### Testing
 
-Currently no server-side tests have been implemented. This is something for future versions.
+Currently no server-side testing has been implemented. This is something for future versions.
 
 
 ## Features
 
 * User can quickly create simple polls
-* Each polls lives at a unique URL and can be shared with friends
+* Each poll lives at a unique URL and can be shared with friends
 * All polls are public by default
-* Only a user can delete their polls, but all users can view other user's polls
+* Only a user can delete their polls, but all users can view other users' polls
 * After a poll is taken, the results are immediately visualized
-* App is responsive and can be used on any mobile device
+* App is responsive and can be used on mobile devices
 
 ![Dashboard - New User](https://github.com/abohannon/spark-poll/blob/develop/screenshots/dashboard-new-user.png?raw=true) 
 
@@ -106,8 +106,8 @@ More screenshots here: https://www.behance.net/gallery/62845267/Spark-Poll-React
 
 ## Future Considerations and Open Thoughts
 
-This project was made for fun, and though I attempted to be as thorough as possible, I'm sure there things I overlooked that will need to
-be corrected for future versions.
+This project was made for fun, and though I attempted to be as thorough as possible, I'm sure there are things I overlooked that will need to
+be corrected for future versions. If you find something and feel compelled, let me know in the issues!
 
 Currently the onboarding process is pretty barebones. I'd like to add two-factor authentication for added security in the future.
 
