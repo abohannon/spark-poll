@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { api_url } from '../util/helpers';
 import {
   FETCH_POLLS,
   FETCH_POLLS_SUCCESS,
@@ -22,7 +23,7 @@ export const pollsFetch = () => async (dispatch) => {
     type: FETCH_POLLS,
   });
   try {
-    const res = await axios.get('/api/fetch_polls');
+    const res = await axios.get(`${api_url}/api/fetch_polls`);
     dispatch({
       type: FETCH_POLLS_SUCCESS,
       payload: res.data,
@@ -39,8 +40,7 @@ export const createPoll = (data, user, history) => async (dispatch) => {
   dispatch({ type: CREATE_POLL });
   const pollData = { ...data, ...user };
   try {
-    console.log('inside try', data);
-    const res = await axios.post('/api/create_poll', pollData);
+    const res = await axios.post(`${api_url}/api/create_poll`, pollData);
     if (res.status !== 200) {
       dispatch({ type: CREATE_POLL_FAIL, payload: 'Error creating poll' });
     } else {
@@ -48,16 +48,14 @@ export const createPoll = (data, user, history) => async (dispatch) => {
       history.push('/dashboard');
     }
   } catch (error) {
-    console.log('ERROR CREATING POLL:', error);
     dispatch({ type: CREATE_POLL_FAIL, payload: error });
   }
 };
 
 export const deletePoll = id => async (dispatch) => {
   dispatch({ type: DELETE_POLL });
-  console.log('delete poll action:', id);
   try {
-    const res = await axios.post('/api/delete_poll', { id });
+    const res = await axios.post(`${api_url}/api/delete_poll`, { id });
     if (res.status !== 200) {
       dispatch({ type: DELETE_POLL_FAIL, payload: res.data });
     } else {
@@ -71,7 +69,7 @@ export const deletePoll = id => async (dispatch) => {
 export const fetchSinglePoll = id => async (dispatch) => {
   dispatch({ type: FETCH_SINGLE_POLL });
   try {
-    const res = await axios.post('/api/fetch_single_poll', { id });
+    const res = await axios.post(`${api_url}/api/fetch_single_poll`, { id });
     dispatch({ type: FETCH_SINGLE_POLL_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({ type: FETCH_SINGLE_POLL_FAIL, payload: error });
@@ -80,12 +78,10 @@ export const fetchSinglePoll = id => async (dispatch) => {
 
 export const submitPoll = (option, id) => async (dispatch) => {
   dispatch({ type: SUBMIT_POLL });
-  console.log({ option, id });
   try {
-    const res = await axios.patch('/api/update_poll', { option, id });
+    const res = await axios.patch(`${api_url}/api/update_poll`, { option, id });
     if (res.status === 200) {
       dispatch({ type: SUBMIT_POLL_SUCCESS, payload: res.data });
-      console.log('Status 200: poll submitted successfully');
     }
   } catch (error) {
     dispatch({ type: SUBMIT_POLL_FAIL, payload: error });

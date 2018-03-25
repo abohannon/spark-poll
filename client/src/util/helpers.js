@@ -29,3 +29,11 @@ export const validateEmail = value => (
     <span style={{ color: COLOR_PINK }}>Invalid email address</span> : undefined
 );
 
+/*
+* API URL
+*/
+
+export const api_url = (process.env.NODE_ENV === 'development')
+  ? 'http://localhost:5000'
+  : 'https://spark-poll-api.herokuapp.com';
+

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { api_url } from '../util/helpers';
 import {
   CREATE_USER_SUCCESS,
   CREATE_USER_FAIL,
@@ -12,7 +13,7 @@ import {
 } from './types';
 
 export const createUser = userData => async (dispatch) => {
-  const res = await axios.post('/api/create_user', userData);
+  const res = await axios.post(`${api_url}/api/create_user`, userData);
   if (res.status === 201) {
     dispatch({ type: CREATE_USER_SUCCESS });
   } else {
@@ -20,11 +21,10 @@ export const createUser = userData => async (dispatch) => {
   }
 };
 
-// TODO: Use history to push to dashboard after login
 export const loginUser = (userData, history) => async (dispatch) => {
   dispatch({ type: LOGIN_USER });
   try {
-    const res = await axios.post('/api/login_user', userData);
+    const res = await axios.post(`${api_url}/api/login_user`, userData);
 
     if (res.status !== 200) {
       dispatch({ type: LOGIN_USER_FAIL, payload: res.data });
@@ -37,7 +37,6 @@ export const loginUser = (userData, history) => async (dispatch) => {
   } catch (error) {
     console.log('ERROR LOGGING IN USER:', error);
   }
-  // TODO: Finish action
 };
 
 export const logout = history => async (dispatch) => {
@@ -47,7 +46,6 @@ export const logout = history => async (dispatch) => {
     history.push('/');
   } catch (error) {
     dispatch({ type: LOGOUT_USER, payload: 'Error logging out user' });
-    console.log('ERROR LOGGING OUT USER:', error);
   }
 };
 
@@ -63,7 +61,7 @@ export const fetchUser = () => async (dispatch) => {
   };
 
   try {
-    const res = await axios.get('/api/get_user', options);
+    const res = await axios.get(`${api_url}/api/get_user`, options);
 
     if (res.status === 200) {
       dispatch({ type: FETCH_USER_SUCCESS, payload: res.data });
