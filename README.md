@@ -5,6 +5,8 @@
 
 Spark Poll is a simple polling app that lets you quickly and easily create polls, share them with your friends, and view their results.
 
+Demo: https://spark-poll.herokuapp.com/
+
 
 ## Stack
 React, Redux, Node/Express, MongoDB, Passport JS, JWT for authentication, Chart.js for visualizing poll results, Radium for styling
