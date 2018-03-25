@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { GridDisplay, Loader } from '../common';
-import { COLOR_GREY_DARK, COLOR_WHITE_GREY } from '../../constants/style';
+import { COLOR_GREY_DARK, COLOR_WHITE_GREY, COLOR_BLUE_80 } from '../../constants/style';
 
 const styles = {
   pollsSectionContainerStyle: {
@@ -56,6 +56,9 @@ class PollsSection extends Component {
           ? <Loader />
           : <GridDisplay polls={this.props.polls} />
         }
+        </div>
+        <div style={{ color: COLOR_BLUE_80 }}>
+        Made by Adam | <a href="https://github.com/abohannon/spark-poll">View the code on GitHub</a>
         </div>
       </div>
     );
