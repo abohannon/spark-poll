@@ -46,6 +46,6 @@ class LandingPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({ polls: state.polls.all });
+const mapStateToProps = state => ({ polls: state.polls });
 
 export default connect(mapStateToProps, { pollsFetch })(LandingPage);

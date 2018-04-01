@@ -47,14 +47,14 @@ class PollsSection extends Component {
       gridContainerStyle,
       titleStyle,
     } = styles;
-
+    console.log(this.props.polls.loading);
     return (
       <div style={pollsSectionContainerStyle}>
         <h2 id="polls" style={titleStyle}>Latest Polls</h2>
         <div style={gridContainerStyle}>
-          { !this.props.polls
+          { this.props.polls.loading
           ? <Loader />
-          : <GridDisplay polls={this.props.polls} />
+          : <GridDisplay polls={this.props.polls.all} />
         }
         </div>
         <div style={{ color: COLOR_BLUE_80 }}>
